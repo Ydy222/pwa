@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'Ownglyph_StudyHard-Rg';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_StudyHard-Rg.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        * {
+            font-family: 'Ownglyph_StudyHard-Rg';
+            margin: 0; padding: 0; box-sizing: border-box;}
+        #app {
+            position: relative;
+            width: 560px;
+            height: 100vh;
+            margin: 0 auto;
+            /* 중간정렬 */
+            padding: 30px;
+        }
+
+        #app>#nav {
+            background-color: lightgrey;
+            padding: 30px;
+        }
+
+        #app>#nav>#menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 40px;
+            /* 위아래 여백 */
+        }
+        #app>#section{
+        padding: 30px;
+        }
+        #app>#section>#section1>h1{
+            margin-bottom: 30px;
+        }
+
+        #app>#section>#section1>input {
+            border: 0;
+            width: 100%;
+            border-bottom: 1px solid lightgrey;
+            border-radius: 5px 5px 0 0;             /* 굴곡을 만들어 줌 */
+            height: 40px;
+            font-size: 1.5rem;                      /* px 픽셀 % 비율 rem 배수 */
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+
+        #app>#section>#footer {
+            background-color: lightgrey;
+            margin-top: 10px;
+            padding: 5px;
+            text-align: center;             /* 중간정렬 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- float : right -> overflow : hidden -->
+    <!-- position : absoulte -> position : relative -->
+    <!-- 옆으로 나오는 태그 span img a 속성 display inline -->
+    <!-- 밑으로 나오는 태그 div h1-h6 p 속성 display block -->
+    <div id="app">
+        <div id="nav">
+            <div>
+                <a href="index.html"> <img src="../images/musinsa.png" alt=""></a>
+            </div>
+            <div id="menu">
+                <a href="rogin.html">로그인</a>
+                <a href="signup.html">회원가입</a>
+            </div>
+        </div>
+        <div id="section">
+            <div id="section1">
+                <h1>아이디</h1>
+                <input type="text" name="" id="" placeholder="아이디">
+            </div>
+            <div id="section1">
+                <h1>비밀번호</h1>
+                <input type="text" name="" id="" placeholder="비밀번호">
+            </div>
+            <div>
+                <h3>간편로그인</h3>
+            </div>
+            <div id="footer">
+                <h2>Copy Right 유다예</h2>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
