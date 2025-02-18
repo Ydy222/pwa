@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>짐케어</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
@@ -57,10 +56,10 @@
                 </div>
             </div>
             <div>
-                <h1 class="text-3xl"><a href="/reservation.html">바로예약</a></h1>
+                <h1 class="text-3xl"><a href="reservation.html">바로예약</a></h1>
             </div>
             <h1>
-                <img src="/src/images/logo.png" alt="">
+                <img src="./src/images/logo.png" alt="">
             </h1>
             <div>
                 <h1 class="text-3xl">예약확인</h1>
@@ -76,7 +75,7 @@
         <h1 class="text-7xl animate-bounce">예약하기</h1>
         <h5 class="text-3xl">reservation</h5>
     </div>
-    <div class="w-[1200px] bg-gray-50 mx-auto p-5 shadow-md rounded-md opacity-0 translate-y-10 animate-fade-in">
+    <div class="w-[1200px] bg-gray-50 mx-auto p-5 shadow-md rounded-md opacity-0 translate-y-10 animate-fade-in" id="step01">
         <div class="flex my-3 h-15">
             <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
                 <label>이름</label>
@@ -106,7 +105,7 @@
                     <div>
                         <input class="border p-1 border border-gray-300
                                    rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                               type="date" name="name" id="use-date">
+                               type="date" name="name" id="use-date" value="">
                         <i class="fa-regular fa-calendar-days fa-2x"></i>
                         <select name="type" id="type"
                                 class="w-[250px] p-2 border border-gray-300 rounded-lg shadow-sm
@@ -122,9 +121,18 @@
                             <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
                                 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <option value="">시</option>
-                                <option value="00">00</option>
+                                <option value="00" selected>00</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="12">12</option>
                             </select>
                             <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
                                 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -140,6 +148,15 @@
                                 <option value="00">00</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="12" selected>12</option>
                             </select>
                             <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
                                 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -150,57 +167,116 @@
                             </select>
                         </div>
                         <div class="flex items-center gap-5 mb-3">
-                            <label for="bag1" class="text-gray-700 mr-48">쇼핑백/백팩 개당<span class="text-orange-500"> 3,000원</span></label>
+                            <label for="keep-bag1" class="text-gray-700 mr-48">쇼핑백/백팩 개당<span class="text-orange-500"> 3,000원</span></label>
                             <input class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
-                                focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" name="" id="bag1" value="0">
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 text-right" type="text" name="" id="keep-bag1" value="1">
                         </div>
                         <div class="flex items-center gap-5 mb-3">
-                            <label for="bag2" class="text-gray-700 mr-64">캐리어<span class="text-orange-500"> 3,000원</span></label>
+                            <label for="keep-bag2" class="text-gray-700 mr-64">캐리어<span class="text-orange-500"> 3,000원</span></label>
                             <input class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
-                                focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" name="" id="bag2" value="0">
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 text-right" type="text" name="" id="keep-bag2" value="1">
                         </div>
                         <div class="flex items-center gap-5 mb-3">
-                            <label for="bag3" class="text-gray-700 mr-40">기타물품 종류 및 수량<span class="text-orange-500"> 3,000원</span></label>
+                            <label for="keep-bag3" class="text-gray-700 mr-40">기타물품 종류 및 수량<span class="text-orange-500"> 3,000원</span></label>
                             <input class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
-                                focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" name="" id="bag3" value="0">
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 text-right" type="text" name="" id="keep-bag3" value="1">
                         </div>
                         <div class="flex items-center gap-5 mb-3">
                             <label class="text-orange-300 mr-48">※ 보관 이용 요금은 1일기준입니다.</label>
                         </div>
                     </div>
-                    <div id="etc2" class="hidden">
-                        <h1>etc2222</h1>
+                    <div id="etc2" class="hidden p-2">
+                        <div class="flex items-center gap-5 mb-3">
+                            <h3 class="text-gray-700">짐 맡길 시간</h3>
+                            <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">시</option>
+                                <option value="00" selected>00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">분</option>
+                                <option value="00">00</option>
+                                <option value="20">20</option>
+                                <option value="40">40</option>
+                            </select>
+                            <h3 class="text-gray-700">짐 찾을 시간</h3>
+                            <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">시</option>
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="12" selected>12</option>
+                            </select>
+                            <select class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">분</option>
+                                <option value="00">00</option>
+                                <option value="20">20</option>
+                                <option value="40">40</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-10 mb-3">
+                            <h3 class="text-gray-700">짐 맡길 곳</h3>
+                            <select class="w-[150px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">시</option>
+                                <option value="00" selected>대구</option>
+                                <option value="01">경주</option>
+                                <option value="02">포항</option>
+                                <option value="02">부산</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-10 mb-3">
+                            <h3 class="text-gray-700">짐 찾을 곳</h3>
+                            <select class="w-[150px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">시</option>
+                                <option value="00" selected>대구</option>
+                                <option value="01">경주</option>
+                                <option value="02">포항</option>
+                                <option value="02">부산</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-5 mb-3">
+                            <label for="move-bag1" class="text-gray-700 mr-48">쇼핑백/백팩 개당<span class="text-orange-500"> 10,000원</span></label>
+                            <input class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 text-right" type="text" name="" id="move-bag1" value="1">
+                        </div>
+                        <div class="flex items-center gap-5 mb-3">
+                            <label for="move-bag2" class="text-gray-700 mr-64">캐리어<span class="text-orange-500"> 12,000원</span></label>
+                            <input class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 text-right" type="text" name="" id="move-bag2" value="1">
+                        </div>
+                        <div class="flex items-center gap-5 mb-3">
+                            <label for="move-bag3" class="text-gray-700 mr-40">기타물품 종류 및 수량<span class="text-orange-500"> 18,000원</span></label>
+                            <input class="w-[100px] p-2 border border-gray-300 rounded-lg shadow-sm
+                                focus:outline-none focus:ring-2 focus:ring-blue-500 text-right" type="text" name="" id="move-bag3" value="1">
+                        </div>
+                        <div class="flex items-center gap-5 mb-3">
+                            <label class="text-orange-300 mr-48">※ 보관 이용 요금은 1일기준입니다.</label>
+                        </div>
                     </div>
-                    <script>
-                        var $select = document.querySelector('#type');
-                        var $etc1 = document.querySelector('#etc1');
-                        var $etc2 = document.querySelector('#etc2');
-                        var $divService = document.querySelector('#div-service');
-
-                        $select.addEventListener('change', function (e) {
-                            if(e.target.value === 'jim-keep'){
-                                $etc1.classList.remove('hidden');
-                                $etc2.classList.add('hidden');
-
-                                $divService.classList.remove('h-20');
-                                $divService.classList.add('h-100');
-                            }
-                            else if(e.target.value === 'jim-move'){
-                                $etc1.classList.add('hidden');
-                                $etc2.classList.remove('hidden');
-
-                                $divService.classList.remove('h-20');
-                                $divService.classList.add('h-100');
-                            }
-                            else {
-                                $etc1.classList.add('hidden');
-                                $etc2.classList.add('hidden');
-
-                                $divService.classList.remove('h-100');
-                                $divService.classList.add('h-20');
-                            }
-                        });
-                    </script>
                 </div>
             </div>
         </div>
@@ -272,7 +348,19 @@
                 <input type="checkbox" name="agree" id="agree"> <label for="agree" class="cursor-pointer">개인정보제공에 동의합니다.</label>
             </div>
             <div>
-                <button class="bg-amber-300 px-12 py-7 text-white cursor-pointer rounded">예약하기</button>
+                <button class="bg-amber-300 px-12
+                        py-7 text-white cursor-pointer rounded"
+                        id="confirm-reserve">예약하기</button>
+            </div>
+        </div>
+    </div>
+    <div class="hidden w-[1200px] bg-gray-50 mx-auto p-5 shadow-md rounded-md opacity-0 translate-y-10 animate-fade-in" id="step02">
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>이름</label>
+            </div>
+            <div class="p-1 border border-gray-300 rounded-lg shadow-sm ml-1 flex items-center" style="flex:1">
+                예약자이름
             </div>
         </div>
     </div>
@@ -297,7 +385,7 @@
     <div class="bg-gray-600">
         <div class="w-[1200px] mx-auto py-7 flex">
             <div>
-                <img src="/src/images/logo.png" alt="">
+                <img src="./src/images/logo.png" alt="">
             </div>
             <div class="ml-5 text-white" style="flex:1">
                 상호: 짐케어 |
@@ -309,6 +397,7 @@
 </body>
 </html>
 
+<script src="./reservation-type.js"/>
 <script>
     // document.querySelector('')
     /*
@@ -323,3 +412,4 @@
         }
     }
 </script>
+
