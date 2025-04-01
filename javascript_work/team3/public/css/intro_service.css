@@ -1,0 +1,27 @@
+main{
+    display:flex;
+    justify-content: center;
+}
+main .container{
+    width:80%;
+}
+main .container .con_head{
+    width:100%;
+    border-bottom:1px solid black;
+}
+main .container .con_head ul{
+    display:flex;
+    justify-content: end;
+}
+main .container .con_head li{
+    width:min(10%, 180px);
+    text-align:center;
+}
+main .container .con_head li:nth-child(3){
+    color:rgb(60,200,255);
+}
+
+main .container .con_head li:first-child{
+    font-size:1.1rem;
+    font-weight:bold;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 로그인</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <h2>Supabase 회원가입 및 로그인</h2>
+    <div>
+        <label for="email">이메일</label>
+        <input type="email" id="email" required>
+    </div>
+    <div>
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" required>
+    </div>
+    <button onclick="signUp()">회원가입</button>
+    <button onclick="signIn()">로그인</button>
+    <button onclick="signOut()">로그아웃</button>
+
+    <h3>사용자 상태</h3>
+    <p id="user-status">로그인 상태 확인 중...</p>
+
+    <script>
+        // Supabase 클라이언트 초기화
+        const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+        const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+        async function allUsers() {
+            // 관리자만 사용자 조회 가능
+            const { data: users, error: usersError } = await supabase.from('auth.users').select('*');
+
+            if (usersError) {
+                console.error("조회 실패:", usersError);
+            } else {
+                console.log("사용자 목록:", users);
+            }
+        }
+
+        allUsers();
+
+        // 회원가입 (signUp)
+        async function signUp() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                Swal.fire('입력 오류', '이메일과 비밀번호를 입력하세요.', 'warning');
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+            });
+
+            if (error) {
+                Swal.fire('회원가입 실패', error.message, 'error');
+            } else {
+                Swal.fire('회원가입 완료', '이메일 인증 후 로그인하세요!', 'success');
+            }
+        }
+
+        // 로그인 (signInWithPassword)
+        async function signIn() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                Swal.fire('입력 오류', '이메일과 비밀번호를 입력하세요.', 'warning');
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+
+            if (error) {
+                Swal.fire('로그인 실패', error.message, 'error');
+            } else {
+                Swal.fire('로그인 성공', '환영합니다!', 'success');
+                updateUserStatus();
+            }
+        }
+
+        // 로그아웃 (signOut)
+        async function signOut() {
+            const { error } = await supabase.auth.signOut();
+
+            if (error) {
+                Swal.fire('로그아웃 실패', error.message, 'error');
+            } else {
+                Swal.fire('로그아웃 완료', '성공적으로 로그아웃되었습니다.', 'success');
+                updateUserStatus();
+            }
+        }
+
+        // 현재 로그인 상태 업데이트
+        async function updateUserStatus() {
+            const { data: { user } } = await supabase.auth.getUser();
+            const userStatus = document.getElementById("user-status");
+
+            if (user) {
+                userStatus.innerText = `현재 로그인된 사용자: ${user.email}`;
+            } else {
+                userStatus.innerText = "현재 로그인된 사용자가 없습니다.";
+            }
+        }
+
+        // 페이지 로드 시 로그인 상태 확인
+        document.addEventListener("DOMContentLoaded", updateUserStatus);
+    </script>
+</body>
+
+</html>

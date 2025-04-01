@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>첫번째</li>
+        <li>두번째</li>
+        <li>세번째</li>
+        <li>네번째</li>
+        <li>다섯번째</li>
+        <li>여섯번째</li>
+    </ul>
+    <script>
+        const li = document.querySelector('li');
+        const lis = document.querySelectorAll('li');
+
+        // li.style.color='rgb(200,100,100)';
+        // li.style.fontSize='3rem';
+        // li.style.cursor='pointer';
+
+        // for (let i = 0; i < lis.length; i++) {
+        //     const element = lis[i];
+        //     element.style.color='rgb(200,100,100)';
+        //     element.style.fontSize='3rem';
+        // }
+        // [ li, li, li] = NodeList
+        lis.forEach(obj => {
+            obj.style.color = 'rgb(200,100,100)';
+            obj.style.fontSize = '3rem';
+            obj.addEventListener('click',function(){
+                // console.log(obj);
+                obj.style.textDecoration = "underline";
+                obj.style.color = 'rgb(100,200,100)';
+                console.log(obj.style);
+            })
+        })
+        // lis[1].style.color='rgb(200,100,100)';
+        // lis[1].style.fontSize='3rem';
+
+        // lis[2].style.color='rgb(200,100,100)';
+        // lis[2].style.fontSize='3rem';
+
+        // console.log(li);
+        // console.log(lis);
+    </script>
+</body>
+
+</html>

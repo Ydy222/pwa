@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/style.css" rel="stylesheet">
+</head>
+<body>
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+  <div class="relative h-[150px]">
+    <h1 class="text-5xl">되나</h1>
+    <div id="move-div" class="absolute top-0 left-0 w-[100px] h-[100px] bg-amber-950">
+    </div>
+  </div>
+  <div>
+    <button class="bg-amber-200 hover:bg-amber-400 cursor-pointer px-3">버튼</button>
+    <ul id="myul"></ul>
+  </div>
+  <script>
+    const $button = document.querySelector('button');
+    const $ul = document.querySelector('ul');
+    const $move_div = document.querySelector('#move-div');
+
+    let px = 100;
+
+    window.addEventListener('keydown', function(e){
+      console.log(e.key);
+      $button.innerHTML="글자바뀜";
+      $button.style.padding = "50px";
+      $ul.innerHTML= $ul.innerHTML + `<li>목록태그</li>`;
+
+      $move_div.style.left = px+"px";
+      px = px+10;
+    });
+
+    // console.log($ul);
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

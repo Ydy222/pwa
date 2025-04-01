@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn">0</button>
+    <script>
+        // 화살표 함수의 this는 상위 객체를 가리킨다.
+        const aa = ()=>{
+            // 화살표 렉시컬 this 26장에서
+            console.log(this); // 여기에서 상위는 window인 전역객체이기 때문에
+                                // window 객체를 가리킨다.
+        }
+        class App {
+            constructor() {
+                this.$button = document.querySelector('.btn');
+                this.count = 0;
+
+                this.$button.onclick = this.increase;
+            }
+            // dom function(){} -> this 는 자기자신을 가리키는 태그
+            // ()=>{} this 상위에 해당되는 객체를 가리킵니다.
+            // 여기에서 상위는 App 객체이기 때문에 App 객체를 가리킨다.
+            increase = ()=>{ 
+                console.log(this);
+                this.$button.textContent = ++this.count;
+            }
+        }
+        new App();
+        aa();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>D3 Pie Chart with Random Data and Labels</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    svg {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+    }
+    button {
+      margin: 10px;
+    }
+    text {
+      fill: white;
+      font-size: 12px;
+      text-anchor: middle;
+      alignment-baseline: middle;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔁 D3 Donut Chart with Random Data + Labels</h2>
+  <div>
+    <button onclick="chartRef.change('apples')">Show Apples</button>
+    <button onclick="chartRef.change('oranges')">Show Oranges</button>
+  </div>
+
+  <div id="chart"></div>
+
+  <script>
+    const width = 600;
+
+    function generateRandomData(count = 8) {
+      return Array.from({ length: count }, () => ({
+        apples: Math.floor(Math.random() * 50000 + 5000),
+        oranges: Math.floor(Math.random() * 1000 + 100),
+      }));
+    }
+
+    let data = generateRandomData();
+
+    function chart() {
+      const height = Math.min(500, width / 2);
+      const outerRadius = height / 2 - 10;
+      const innerRadius = outerRadius * 0.5;
+      const color = d3.scaleOrdinal(d3.schemeTableau10);
+
+      const svg = d3.create("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", [-width / 2, -height / 2, width, height]);
+
+      const arc = d3.arc()
+        .innerRadius(innerRadius)
+        .outerRadius(outerRadius);
+
+      const pie = d3.pie().sort(null).value(d => d["apples"]);
+
+      const arcs = pie(data);
+
+      const path = svg
+        .selectAll("path")
+        .data(arcs)
+        .join("path")
+        .attr("fill", (d, i) => color(i))
+        .attr("d", arc)
+        .each(function(d) { this._current = d; });
+
+      const labels = svg
+        .selectAll("text")
+        .data(arcs)
+        .join("text")
+        .attr("transform", d => `translate(${arc.centroid(d)})`)
+        .text(d => d.data["apples"]);
+
+      function change(value) {
+        data = generateRandomData();
+        pie.value((d) => d[value]);
+
+        const newData = pie(data);
+
+        // Update paths
+        path.data(newData);
+        path.transition().duration(750).attrTween("d", arcTween);
+
+        // Update labels
+        labels.data(newData)
+          .transition().duration(750)
+          .attr("transform", d => `translate(${arc.centroid(d)})`)
+          .tween("text", function(d) {
+            const that = d3.select(this);
+            const i = d3.interpolateNumber(+that.text(), d.data[value]);
+            return function(t) {
+              that.text(Math.round(i(t)));
+            };
+          });
+      }
+
+      function arcTween(a) {
+        const i = d3.interpolate(this._current, a);
+        this._current = i(0);
+        return (t) => arc(i(t));
+      }
+
+      return Object.assign(svg.node(), { change });
+    }
+
+    const chartRef = chart();
+    document.getElementById("chart").appendChild(chartRef);
+
+    let currentKey = "apples";
+    setInterval(() => {
+      currentKey = currentKey === "apples" ? "oranges" : "apples";
+      chartRef.change(currentKey);
+    }, 1000);
+  </script>
+</body>
+</html>

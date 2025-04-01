@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <h1><a href="review.html">review.html</a></h1>
+    <div style="padding: 1rem;">
+        <h1>로그인/회원가입</h1>
+        <h2>email</h2>
+        <input type="text" name="" id="email">
+        <h2>password</h2>
+        <input type="password" name="" id="password">
+    </div>
+    <div style="margin: 1rem;">
+        <div style="margin-bottom: 1rem;">
+            <button type="button" id="login">로그인</button>
+            <button type="button" id="sign">회원가입</button>
+        </div>
+        <div>
+            <button type="button" id="logout">로그아웃</button>
+        </div>
+
+        <div>
+            <button type="button" id="kakao-login">카카오 로그인</button>
+        </div>
+    </div>
+    <div>
+        <h2>리뷰</h2>
+        <h3>name</h3>
+        <input type="text" name="name" id="review-name" /><br />
+        <h3>title</h3>
+        <input type="text" name="title" id="review-title" /><br />
+        password
+        <input type="password" name="password" id="review-password" /><br />
+        review_txt<br />
+        <textarea name="review_txt" id="review-txt" style="width: 300px; height: 100px;"></textarea>
+        <input type="file" name="" id="review-file">
+        <button id="review-save-btn">저장</button>
+    </div>
+    <div id="login-status"></div>
+</body>
+
+</html>

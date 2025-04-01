@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🍽 음식 분류기</title>
+  <style>body { font-family: sans-serif; padding: 2em; }</style>
+</head>
+<body>
+  <h2>음식 이미지를 업로드하세요!</h2>
+  <input type="file" id="img" />
+  <button onclick="sendImage()">분류하기</button>
+  <p id="result"></p>
+
+  <script>
+    async function sendImage() {
+      const input = document.getElementById('img');
+      const formData = new FormData();
+      formData.append("file", input.files[0]);
+
+      const res = await fetch('/predict', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      document.getElementById('result').innerText =
+        `예측 결과: ${data.label} (${(data.confidence * 100).toFixed(2)}%)`;
+    }
+  </script>
+</body>
+</html>

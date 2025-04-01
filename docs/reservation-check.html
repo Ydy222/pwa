@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>짐케어</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'Pretendard-Regular';
+        }
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in{
+            animation: fade-in 0.8s ease-in-out forwards;
+        }
+    </style>
+    <script>
+        // DOMContentLoaded 사용하면 html 다 불러와 지고 나서 함수 실행
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#use-date", {
+                dateFormat: "Y-m-d"
+            });
+            flatpickr("#test", {
+                dateFormat: "Y-m-d"
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="wrap" class="w-full bg-[#302402]">
+    <div class="h-[100px]">
+        <div id="menu" class="h-full flex justify-center items-center text-white gap-10 cursor-pointer">
+            <div class="relative group">
+                <h1 class="text-3xl hover:text-amber-400">서비스</h1>
+                <div class="absolute w-40 top-16 -left-10 bg-[#302402] opacity-0 group-hover:opacity-100 transition duration-300">
+                    <div class="bg-amber-400 w-0  h-[2px]  group-hover:w-40 transform scale-0 group-hover:scale-100 transition duration-700"></div>
+                    <ul class="flex flex-col gap-3 p-3">
+                        <li>서비스소개</li>
+                        <li>서비스비용</li>
+                        <li>오시는길</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-3xl"><a href="reservation.html">바로예약</a></h1>
+            </div>
+            <h1>
+                <img src="./src/images/logo.png" alt="">
+            </h1>
+            <div>
+                <h1 class="text-3xl"><a href="reservation-check.html">예약확인</a></h1>
+            </div>
+            <div>
+                <h1 class="text-3xl">고객지원</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-amber-300 pt-10">
+    <div class="text-center pt-10 pb-5">
+        <h1 class="text-7xl animate-bounce">예약확인</h1>
+        <h5 class="text-3xl">reservation</h5>
+    </div>
+    <div class="w-[800px] bg-gray-50 mx-auto p-5 shadow-md rounded-md opacity-0 translate-y-10 animate-fade-in" id="step01">
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>이름</label>
+            </div>
+            <div class="p-1 border border-gray-300 rounded-lg shadow-sm ml-1" style="flex:1">
+                <input class="m-2 p-1 border border-gray-300 rounded-lg shadow-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       type="text" name="name" id="name">
+            </div>
+        </div>
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>휴대전화</label>
+            </div>
+            <div class="p-1 border border-gray-300 rounded-lg shadow-sm ml-1" style="flex:1">
+                <input class="m-2 p-1 border border-gray-300 rounded-lg shadow-sm
+                            focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       type="text" name="name"
+                       id="phone" placeholder="구분자(-)를 제외한 숫자만 입력하세요">
+            </div>
+        </div>
+        <div class="flex my-3 h-30">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>개인정보<br/>취급방침</label>
+            </div>
+            <div class="p-1 border border-gray-300 rounded-lg shadow-sm ml-1 h-30 overflow-auto"
+                 style="flex:1;font-family: 'Pretendard-Regular';">
+                개인정보취급방침<br/>
+                “짐케어”(이하 “회사”라 함)은 통신비밀보호법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 정보통신서비스제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을
+                준수하며, 관련 법령에 의거한 개인정보취급방침을 정하여 이용자 권익 보호에 최선을 다하고 있습니다.<br/>
+                회사의 개인정보취급방침은 관련 법률 및 지침에 따라 변경될 수 있고 개정의 경우 7일전에 홈페이지를 통해 고지할 것 입니다.<br/>
+                회사의 개인정보취급방침은 다음과 같은 내용을 담고 있습니다.<br/>
+                1. 수집하는 개인정보의 항목<br/>
+                회사는 회원가입, 상담, 서비스 신청 및 제공 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.<br/>
+                - 이름, 이메일, 주소, 연락처, 핸드폰 번호, 아이디, 비밀번호 또한 서비스 이용과정이나 사업 처리 과정에서 아래와 같은 정보들이 생성되어 수집될 수 있습니다.<br/>
+                - 서비스 이용기록, 접속 로그, 쿠키, 접속 IP 정보, 방문일시, 브라우저종류 및 os, 검색어, 결제기록, 이용정지 기록, 상담기록<br/><br/>
+                2. 개인정보의 수집 및 이용목적<br/>
+                회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br/>
+                가. 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산<br/>
+                콘텐츠 제공, 물품배송 또는 청구서 등 발송, 금융거래 본인 인증 및 금융 서비스, 구매 및 요금 결재, 요금추심<br/>
+                나. 회원 관리<br/>
+                회원제 서비스 이용에 따른 본인확인, 개인식별, 불량회원의 부정 이용 방지와 비인가 사용 방지, 가입 의사 확인, 가입 및 가입횟수 제한, 만14세 미만 아동 개인정보 수집 시 법정
+                대리인 동의여부 확인, 추후 법정 대리인 본인확인, 분쟁 조정을 위한 기록보존, 불만처리 등 민원처리, 고지사항 전달<br/>
+                다. 마케팅 및 광고에 활용<br/>
+                신규 서비스(제품) 개발 및 특화, 인구통계학적 특성에 따른 서비스 제공 및 광고 게재, 접속 빈도 파악, 회원의 서비스 이용에 대한 통계, 이벤트 등 광고성 정보 전달<br/><br/>
+                3. 개인정보의 보유/이용기간<br/>
+                이용자의 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다.<br/>
+                단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존합니다.<br/>
+                가. 회사 내부 방침에 의한 정보보유 사유<br/>
+                - 부정이용기록<br/>
+                보존 이유 : 부정 이용 방지<br/>
+                보존 기간 : 1년<br/><br/>
+                나. 관련법령에 의한 정보보유 사유<br/>
+                상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다. 이 경우 회사는
+                보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다.<br/><br/>
+                - 계약 또는 청약철회 등에 관한 기록<br/>
+                보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률<br/>
+                보존 기간 : 5년<br/>
+                - 대금결제 및 재화 등의 공급에 관한 기록<br/>
+                보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률<br/>
+                보존 기간 : 5년<br/>
+                - 소비자의 불만 또는 분쟁처리에 관한 기록<br/>
+                보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률<br/>
+                보존 기간 : 3년<br/>
+                - 본인확인에 관한 기록<br/>
+                보존 이유 : 정보통신 이용촉진 및 정보보호 등에 관한 법률<br/>
+                보존 기간 : 6개월<br/>
+                - 방문에 관한 기록<br/>
+                보존 이유 : 통신비밀보호법<br/>
+                보존 기간 : 3개월<br/>
+            </div>
+        </div>
+        <div class="text-center">
+            <div class="mt-5 mb-10">
+                <input type="checkbox" name="agree" id="agree">
+                <label for="agree" class="cursor-pointer">개인정보제공에 동의합니다.</label>
+            </div>
+            <div>
+                <button class="bg-amber-300 px-12
+                        py-7 text-white cursor-pointer rounded"
+                        id="confirm-reserve">예약확인</button>
+            </div>
+        </div>
+    </div>
+    <!-- 예약 조회 누르면 이동되는 페이지 step-02 -->
+    <div class="hidden w-[1200px] bg-gray-50 mx-auto p-5 shadow-md rounded-md opacity-0 translate-y-10 animate-fade-in" id="step02">
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>이름</label>
+            </div>
+            <div class="p-1 pl-3 border border-gray-300 rounded-lg shadow-sm ml-1 flex items-center"
+                 style="flex:1"
+                 id="r-name"
+            >
+                예약자이름
+            </div>
+        </div>
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>휴대전화번호</label>
+            </div>
+            <div class="p-1 pl-3 border border-gray-300 rounded-lg shadow-sm ml-1 flex items-center"
+                 style="flex:1"
+                 id="r-phone"
+            >
+                예약자휴대번호
+            </div>
+        </div>
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>이용날짜</label>
+            </div>
+            <div class="p-1 pl-3 border border-gray-300 rounded-lg shadow-sm ml-1 flex items-center"
+                 style="flex:1"
+                 id="r-date"
+            >
+                이용날짜
+            </div>
+        </div>
+        <div class="flex my-3 h-[350px]">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <label>이용내역</label>
+            </div>
+            <div class="p-1 pl-3 border border-gray-300 rounded-lg shadow-sm ml-1
+                        flex flex-col gap-2"
+                 style="flex:1"
+                 id="r-details"
+            >
+                <h3>짐 맡길 시간 <span id="jim-start-time">9시 00분</span></h3>
+                <h3>짐 찾을 시간 <span id="jim-end-time">21시 00분</span></h3>
+                <hr style="border: 1px dotted rgb(220,220,220)">
+                <div>
+                    <div>쇼핑백/백팩 개당 <span class="text-orange-500 mr-32">3,000원</span><span id="keep-out-bag1"></span>개</div>
+                    <div>캐리어 개당 <span class="text-orange-500 mr-40">4,000원</span><span id="keep-out-bag2"></span>개</div>
+                    <div>기타물품 종류 및 수량 <span class="text-orange-500 mr-24">3,000원</span><span id="keep-out-bag3"></span>개</div>
+                    <div>합계비용 :<span class="text-orange-500 mr-15" id="total-price">7,000원</span> + 기타물품비용 별도</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex my-3 h-15">
+            <div class="bg-amber-300 text-white px-16 py-3 rounded w-[300px] h-full flex items-center justify-center">
+                <h3> 문의사항 <br>짐에관한당부사항</h3>
+            </div>
+            <div class="p-1 pl-3 border border-gray-300 rounded-lg shadow-sm ml-1
+                        flex flex-col gap-2"
+                 style="flex:1"
+                 id="r-comment"
+            >
+                당부사항
+            </div>
+        </div>
+        <div class="flex justify-center gap-5">
+            <!-- 뒤로 돌아가기 -->
+            <div>
+                <button class="bg-amber-300 px-12
+                        py-7 text-white cursor-pointer rounded"
+                        id="reset-reserve">다시조회</button>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-700 mt-20">
+        <div class="w-[1200px] mx-auto text-white h-12 flex justify-between">
+            <div class="flex items-center h-full gap-5">
+                <div>서비스</div>
+                |
+                <div>바로예약</div>
+                |
+                <div>예약확인</div>
+                |
+                <div>고객지원</div>
+                |
+                <div>개인정보취급방침</div>
+            </div>
+            <div class="flex items-center h-full cursor-pointer bg-gray-900 px-3"
+                 onclick="window.scrollTo({top:0, behavior:'smooth'})">TOP⇧
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-600">
+        <div class="w-[1200px] mx-auto py-7 flex">
+            <div>
+                <img src="./src/images/logo.png" alt="">
+            </div>
+            <div class="ml-5 text-white" style="flex:1">
+                상호: 짐케어 |
+            </div>
+        </div>
+    </div>
+    <input type="text" id="test"/>
+</div>
+</body>
+</html>
+
+<script src="./reservation-check.js"/>
+<script>
+    // document.querySelector('')
+    /*
+        event 변수가 들어오는데
+        function(e){}
+        ()=>{}
+     */
+    console.log(window);
+    window.onkeydown = function (e) {
+        console.log(e.key);
+        if( e.key ==='ArrowRight'){
+        }
+    }
+</script>
+

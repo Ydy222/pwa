@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ex01</h1>
+    <button onclick="localSave();">로컬스토리지저장</button>
+    <button onclick="localLoad();">로컬스토리지불러오기</button>
+    <button onclick="localDelete();">로컬스토리지삭제하기</button>
+    <button onclick="login();">로그인</button>
+    <button onclick="logout();">로그아웃</button>
+    <script>
+        // email password 맞으면 로그인 처리 하면서 sessionStorage에 저장
+        // sessionStorage = 브라우저 창 닫기 전까지 데이터를 가지고 있는 곳
+        // 로그인할때 id checkbox 저장 누르면 localStorage에 id저장
+        // localStorage = 브라우저 창 닫겨도 데이터를 계속 가지고 있는 곳
+
+        function localSave() {
+            localStorage.setItem("aaa", "bbb");
+        }
+
+        function localLoad() {
+            console.log(localStorage.getItem("aaa"));
+        }
+
+        function localDelete() {
+            localStorage.removeItem("aaa");
+        }
+
+        function login() {
+            sessionStorage.setItem("name","value");
+        }
+
+        function logout() {
+            sessionStorage.removeItem("name");
+        }
+    </script>
+</body>
+</html>

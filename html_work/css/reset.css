@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'SBAggroB';
+  src: url('../fonts/SBAggroB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+*{ margin: 0;  padding: 0;  box-sizing: border-box; font-family: "SBAggroB"; }
+ul{ list-style-type: none; }
+a{ text-decoration: none; }

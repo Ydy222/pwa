@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table, td { border: 1px solid black; border-collapse: collapse; }    
+    /* td { border: 1px solid black; }     */
+  </style>
+</head>
+<body>
+  <!-- colspan 열합치기 위한 사용 rowspan 행합치기 위한 사용 -->
+  <div>
+    <h1 style="font-size: 50px; font-family: '궁서'; ">테이블복습</h1>
+    <h2 style="font-size: 50px; font-family: '맑은 고딕'; ">테이블복습</h2>
+    <p>table테이블태그 tr이 행태그 th열제목 가운데정렬 진하게 td열 왼쪽정렬</p>
+    <table>
+      <tr>
+        <td colspan="2">행1열1</td><td>행1열2</td><td>행1열3</td>
+      </tr>
+      <tr>
+        <td>행2열1</td><td rowspan="2">행2열2</td><td>행2열3</td>
+      </tr>
+      <tr>
+        <td>행3열1</td><td>행3열2</td><td>행3열3</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

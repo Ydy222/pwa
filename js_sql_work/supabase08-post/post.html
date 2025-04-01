@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+
+        var supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+</head>
+
+<body>
+    <h1>POST</h1>
+    <div>
+        <label for="title">title</label>
+        <input type="text" id="title" name="title" />
+        <hr>
+        <label for="content">content</label>
+        <textarea id="content" style="width: 100%;height: 200px;"></textarea>
+        <input type="file" id="file" name="file" /><br />
+        <hr>
+        <button onclick="post();">POST</button>
+    </div>
+    <div id="post-list">
+    </div>
+</body>
+
+</html>
+<script src="post.js"></script>

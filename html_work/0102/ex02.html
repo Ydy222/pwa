@@ -1,0 +1,30 @@
+<!-- shift + pageUp 뒤에서 위로 전체 지정 -->
+<!-- shift + pageDown 앞에서 밑으로 전체 지정 -->
+<!-- ctrl + A 전체 지정 -->
+<!-- home 제일 앞으로 -->
+<!-- end 제일 뒤로 -->
+<!-- shift + alt + f 자동 정렬-->
+<!-- 내어 쓰기 shift +tab -->
+<!-- 들여 쓰기 tab -->
+<!DOCTYPE html> <!-- html 5 -->
+<html lang="en">
+  <head>
+    <!-- 문서에 정의 -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>qwerqwerqwer</title>
+  </head>
+  <body>
+    <h1>제목</h1>
+    <p style="background-color: red; color:white">HTML CSS JAVASCIPRT</p>
+    <a href="ex03.html" target="_blank">EX03</a>
+  </body>
+</html>
+<script>
+  console.log("테스트입니다");
+  const p = document.querySelector("p");
+  p.addEventListener("click",()=>{ 
+    p.style.backgroundColor = "blue";
+    p.style.color = "yellow";
+  });
+</script>

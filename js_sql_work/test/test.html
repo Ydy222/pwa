@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 로그인</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<h2>Supabase 로그인</h2>
+
+<label for="email">이메일:</label>
+<input type="email" id="email" placeholder="이메일 입력">
+
+<label for="password">비밀번호:</label>
+<input type="password" id="password" placeholder="비밀번호 입력">
+
+<button onclick="loginUser()">로그인</button>
+<button onclick="logoutUser()">로그아웃</button>
+<button onclick="getUserOrders();">order조회</button>
+<button onclick="insertOrder('내상품',1000);">order넣기</button>
+<p id="user-info"></p>
+
+<script>
+    async function insertOrder(productName, price) {
+        const user = await supabase.auth.getUser(); // 로그인한 사용자 정보 가져오기
+
+        if (!user.data.user) {
+            console.error("로그인되지 않음");
+            return;
+        }
+
+        const { data, error } = await supabase
+            .from('orders')
+            .insert([{ user_id: user.data.user.id, product_name: productName, price }]);
+
+        if (error) {
+            console.error("데이터 추가 실패:", error.message);
+        } else {
+            console.log("주문 추가 성공:", data);
+        }
+    }
+
+    async function updateOrder(orderId, newProductName, newPrice) {
+        const user = await supabase.auth.getUser(); // 로그인한 사용자 정보 가져오기
+
+        if (!user.data.user) {
+            console.error("로그인되지 않음");
+            return;
+        }
+
+        const { data, error } = await supabase
+            .from('orders')
+            .update({ product_name: newProductName, price: newPrice })
+            .eq('id', orderId)
+            .eq('user_id', user.data.user.id); // 현재 로그인한 사용자의 데이터만 수정
+
+        if (error) {
+            console.error("데이터 수정 실패:", error.message);
+        } else {
+            console.log("주문 수정 성공:", data);
+        }
+    }
+
+    async function getUserOrders() {
+        const { data, error } = await supabase
+            .from('orders')  // 요청할 테이블
+            .select('*')
+            .eq('user_id', (await supabase.auth.getUser()).data.user.id); // 현재 로그인한 사용자의 ID로 필터링
+
+        if (error) {
+            console.error("데이터 조회 실패:", error.message);
+        } else {
+            console.log("내 주문 데이터:", data);
+        }
+    }
+    const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+    const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI"; // Supabase에서 가져온 anon-key
+
+    const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+
+    // 로그인 함수
+    async function loginUser() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
+
+        if (error) {
+            Swal.fire("로그인 실패", error.message, "error");
+        } else {
+            Swal.fire("로그인 성공!", `환영합니다, ${data.user.email}!`, "success");
+            document.getElementById("user-info").innerText = `로그인된 사용자: ${data.user.email}`;
+        }
+    }
+
+    // 로그아웃 함수
+    async function logoutUser() {
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            Swal.fire("로그아웃 실패", error.message, "error");
+        } else {
+            Swal.fire("로그아웃 성공!", "성공적으로 로그아웃되었습니다.", "success");
+            document.getElementById("user-info").innerText = "로그인된 사용자가 없습니다.";
+        }
+    }
+
+    // 로그인 상태 확인
+    async function checkLoginStatus() {
+        const { data, error } = await supabase.auth.getUser();
+        console.log(data);
+
+        if (error || !data.user) {
+            document.getElementById("user-info").innerText = "로그인된 사용자가 없습니다.";
+        } else {
+            document.getElementById("user-info").innerText = `로그인된 사용자: ${data.user.email}`;
+        }
+    }
+
+    checkLoginStatus();
+</script>
+</body>
+</html>

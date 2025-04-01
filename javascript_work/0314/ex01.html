@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const x = 10;
+        function outer(){
+            // 내부 함수가 외부함수의 변수를 참조
+            const x = 1;
+            const y = 20;
+            return function inner(){
+                debugger;
+                console.log(x);
+            }
+        }
+        const o1 = outer();
+        o1();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+
+        var supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+    <style>
+        h1:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="usersSelect();">USERS조회</button>
+    <button onclick="ordersSelect();">ORDERS조회</button>
+    <h1 style="cursor: pointer;" onclick="userToggle()">유저</h1>
+    <div id="users-div" class="content"></div>
+    <h1 style="cursor: pointer;" onclick="orderToggle()">주문</h1>
+    <div id="orders-div" class="content"></div>
+    <div>
+        이름<input type="text" id="name" value="aaa" /><br />
+        이메일<input type="email" id="email" />
+        <button id="input-button-user">USERS입력</button>
+    </div>
+    <div>
+        상품명<input type="text" id="product_name" /><br />
+        상품가격<input type="text" id="price" />
+        <button id="input-button-order">ORDERS입력</button>
+    </div>
+
+    <div id="modal" 
+            class="hidden"
+            style="
+                position: fixed; 
+                top:0; bottom: 0; left: 0; right: 0; 
+                background-color: rgba(230,230,230,0.5);">
+        <div class="modal-div">
+            <div style="display: flex; justify-content: space-around;">
+                <h1>수정</h1>
+                <button onclick="modalClose();">❌</button>
+            </div>
+            <div>
+                사용자ID <h3 id="update-user-id"></h3>
+                이름<input type="text" id="update-name" value="aaa" /><br />
+                이메일<input type="email" id="update-email" />
+                <button id="update-button-user">USERS수정</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    .hidden{
+        display: none;
+    }
+    .modal-div{
+        margin: 0 auto;
+        margin-top: 25vh;
+        height: 400px;
+        width: 500px;
+        background-color: white;
+    }
+    table {
+        width: 100%;
+    }
+
+    table,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+</style>
+<style>
+    .content {
+        height: 0;
+        overflow: hidden;
+    }
+
+    .show {
+        height: auto;
+    }
+
+    tr:hover {
+        text-decoration: underline;
+    }
+</style>
+<script>
+    function modalClose(){
+        const $modal = document.querySelector('#modal');
+        $modal.classList.add('hidden');
+    }
+    function userToggle() {
+        document.querySelector('#users-div').classList.toggle('show');
+    }
+    function orderToggle() {
+        document.querySelector('#orders-div').classList.toggle('show');
+    }
+</script>
+<script src="users.js"></script>
+<script src="orders.js"></script>

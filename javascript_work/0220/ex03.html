@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+    </ul>
+</body>
+</html>
+<script>
+    const $ul = document.querySelector('ul');
+
+    // ul.innerHTML = <li>사과</li> <li>반나</li> <li>파인애플</li>
+    const brr = ["문자열로","만들기","배열을"];
+    const str = brr.join(" ");
+    console.log(str);
+
+    const arr = ['사과', '바나나', '파인애플'];
+    const result = arr.map((item) => {
+        console.log("test" + item);
+        return `<li>${item}</li>`;
+    }).join('');
+    console.log(result);
+
+    $ul.innerHTML = result;
+    
+    // const resultjoin = result.join('');
+    // console.log(resultjoin);
+</script>

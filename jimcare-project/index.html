@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>짐케어</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        @font-face {
+            font-family: 'SBAggroB';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        * {
+            font-family: 'SBAggroB';
+        }
+    </style>
+
+</head>
+<body>
+<div id="wrap" class="w-full bg-[#302402]">
+    <div class="h-[100px]">
+        <div id="menu" class="h-full flex justify-center items-center text-white gap-10 cursor-pointer">
+            <div class="relative group">
+                <h1 class="text-3xl hover:text-amber-400">서비스</h1>
+                <div class="absolute w-40 top-16 -left-10 bg-[#302402] opacity-0 group-hover:opacity-100 transition duration-300">
+                    <div class="bg-amber-400 w-0  h-[2px]  group-hover:w-40 transform scale-0 group-hover:scale-100 transition duration-700"></div>
+                    <ul class="flex flex-col gap-3 p-3">
+                        <li>서비스소개</li>
+                        <li>서비스비용</li>
+                        <li>오시는길</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-3xl"><a href="/reservation.html">바로예약</a></h1>
+            </div>
+            <h1>
+                <img src="/src/images/logo.png" alt="">
+            </h1>
+            <div>
+                <h1 class="text-3xl">예약확인</h1>
+            </div>
+            <div>
+                <h1 class="text-3xl">고객지원</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
+<script>
+    const $wrap = document.querySelector('#wrap');
+</script>

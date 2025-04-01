@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="menu">
+      <ul>
+        <li>
+          <a href="#">JavaScript</a>
+          <ul class="submenu">
+            <li><a href="#">ES6</a></li>
+            <li><a href="#">TypeScript</a></li>
+            <li><a href="#">DOM</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">React</a>
+          <ul class="submenu">
+            <li><a href="#">Hooks</a></li>
+            <li><a href="#">Components</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Node</a>
+          <ul class="submenu">
+            <li><a href="#">Express</a></li>
+            <li><a href="#">NestJS</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">GitHub</a>
+          <ul class="submenu">
+            <li><a href="#">Repositories</a></li>
+            <li><a href="#">Gists</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <style>
+      /* 기본 메뉴 스타일 */
+      #menu {
+        background-color: rgb(100, 200, 255);
+        padding: 10px;
+      }
+
+      #menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex; /* 가로 배열 */
+      }
+
+      #menu > ul > li {
+        position: relative; /* 서브 메뉴 위치 설정을 위한 부모 요소 */
+      }
+
+      #menu ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: white;
+        background-color: rgb(200, 50, 150);
+        text-align: center;
+      }
+
+      #menu ul li a:hover {
+        background-color: rgb(150, 30, 100);
+      }
+
+      /* 서브 메뉴 */
+      .submenu {
+        position: absolute;
+        top: 100%; /* 상위 메뉴 바로 아래 */
+        left: 0;
+        background-color: rgb(10, 250, 200);
+        padding: 0;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .submenu li a {
+        padding: 10px 20px;
+        white-space: nowrap; /* 글자 넘침 방지 */
+        background-color: rgb(50, 150, 200);
+        color: white;
+      }
+
+      .submenu li a:hover {
+        background-color: rgb(30, 120, 180);
+      }
+
+      /* 호버 시 서브 메뉴 표시 */
+      #menu > ul > li:hover > .submenu {
+        display: block;
+      }
+
+      .submenu {
+        transform: translateY(-10px); /* 자연스럽게 내려오는 느낌 */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      #menu > ul > li:hover > .submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); /* 자연스럽게 내려오는 느낌 */
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 이미지 업로드 & 다운로드 & 삭제</title>
+
+</head>
+
+<body>
+    <h2>Supabase 이미지 업로드 & 다운로드 & 삭제</h2>
+
+    <!-- 파일 업로드 -->
+    <input type="file" id="fileInput">
+    <button onclick="uploadImage()">업로드</button>
+
+    <h3>📸 업로드된 이미지 목록</h3>
+    <div id="imageList"></div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Supabase 설정
+    const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+    const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+    const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    const bucketName = "pmh"; // 저장소 버킷 이름
+
+    // ✅ 1. 이미지 업로드
+    async function uploadImage() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("파일을 선택하세요!");
+            return;
+        }
+
+        const fileExt = file.name.split(".").pop(); // 확장자 추출
+        const safeFileName = sanitizeFileName(file.name); // 안전한 파일 이름 변환
+
+        // Supabase Storage 업로드
+        const { data, error } = await supabase.storage
+            .from(bucketName)
+            .upload(safeFileName, file);
+
+        if (error) {
+            alert("업로드 실패: " + error.message);
+            return;
+        }
+
+        alert("✅ 업로드 성공!");
+        fileInput.value = ""; // 파일 선택 초기화
+        loadImages(); // 이미지 목록 새로고침
+    }
+
+    // ✅ 2. 이미지 목록 불러오기
+    async function loadImages() {
+        const res = await supabase.storage
+            .from(bucketName)
+            .list();
+        const { data, error } = res;
+        
+        console.log(res);
+        console.log(data);
+
+        if (error) {
+            console.error("이미지 목록 불러오기 실패:", error.message);
+            return;
+        }
+
+        const imageList = document.getElementById("imageList");
+        imageList.innerHTML = ""; // 기존 목록 초기화
+
+        data.forEach(file => {
+            const fileUrl = supabase.storage.from(bucketName).getPublicUrl(file.name).data.publicUrl;
+
+            // 이미지 목록 UI 추가
+            const listItem = document.createElement("div");
+            listItem.innerHTML = `
+                <p>${file.name}</p>
+                <a href="${fileUrl}" target="_blank">
+                    <img src="${fileUrl}" width="150" alt="${file.name}">
+                </a>
+                <br>
+                <button onclick="deleteImage('${file.name}')">삭제</button>
+            `;
+            imageList.appendChild(listItem);
+        });
+    }
+
+    // ✅ 3. 이미지 삭제
+    async function deleteImage(fileName) {
+        const { error } = await supabase.storage
+            .from(bucketName)
+            .remove([fileName]);
+
+        if (error) {
+            alert("삭제 실패: " + error.message);
+            return;
+        }
+
+        alert("🗑️ 삭제 성공!");
+        loadImages(); // 목록 새로고침
+    }
+
+    // 페이지 로드 시 이미지 목록 불러오기
+    window.addEventListener("DOMContentLoaded", function () {
+        loadImages(); // 목록 새로고침
+    });
+
+    // 삭제 함수 전역 등록 (HTML 버튼에서 사용 가능하도록)
+    window.deleteImage = deleteImage;
+
+    function sanitizeFileName(fileName) {
+        return fileName
+            .replace(/\s+/g, "_") // 공백을 언더스코어(_)로 변경
+            .replace(/[^\w.-]/g, "") // 한글 및 특수 문자 제거
+            .toLowerCase(); // 소문자로 변환 (권장)
+    }
+
+</script>

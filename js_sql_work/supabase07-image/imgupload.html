@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 드래그 앤 드롭 다중 파일 업로드</title>
+    <style>
+        #dropZone {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+        #dropZone.dragover {
+            border-color: #007bff;
+            background-color: #f8f9fa;
+        }
+        #uploadStatus {
+            text-align: center;
+        }
+        .preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Supabase 드래그 앤 드롭 다중 파일 업로드</h2>
+
+    <!-- 🔹 파일 드래그 앤 드롭 영역 -->
+    <div id="dropZone">📂 여기에 여러 개의 파일을 드래그 & 드롭하세요</div>
+
+    <!-- 🔹 업로드 상태 표시 -->
+    <div id="uploadStatus"></div>
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Supabase 설정
+    const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+    const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+    const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    const bucketName = "pmh"; // 저장소 버킷 이름
+
+    // 🔹 드래그 앤 드롭 관련 이벤트 처리
+    const dropZone = document.getElementById("dropZone");
+
+    // 드래그 진입 시 스타일 변경
+    dropZone.addEventListener("dragover", (event) => {
+        event.preventDefault(); // 기본 이벤트 방지
+        dropZone.classList.add("dragover");
+    });
+
+    // 드래그 나갈 때 스타일 복원
+    dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+    });
+
+    // 파일 드롭 시 업로드
+    dropZone.addEventListener("drop", async (event) => {
+        event.preventDefault();
+        dropZone.classList.remove("dragover");
+
+        const files = event.dataTransfer.files; // 드롭된 파일 가져오기
+        if (files.length === 0) return;
+
+        await uploadMultipleFiles(files); // 여러 파일 업로드 실행
+    });
+
+    // 🔹 여러 개 파일 업로드 함수
+    async function uploadMultipleFiles(files) {
+        let uploadPromises = []; // 업로드 프로미스 배열
+        let uploadedUrls = []; // 업로드된 파일 URL 저장
+
+        for (const file of files) {
+            const fileExt = file.name.split(".").pop(); // 확장자 추출
+            const uuid = crypto.randomUUID();
+            const fileName = uuid + '.' + fileExt;
+
+            const uploadPromise = supabase.storage
+                .from(bucketName)
+                .upload(fileName, file)
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error(`❌ 업로드 실패 (${file.name}):`, error.message);
+                        return null;
+                    }
+                    const fileUrl = supabase.storage.from(bucketName).getPublicUrl(fileName).data.publicUrl;
+                    uploadedUrls.push({ fileName, fileUrl });
+                    return fileUrl;
+                });
+
+            uploadPromises.push(uploadPromise);
+        }
+
+        await Promise.all(uploadPromises); // 모든 업로드 완료 대기
+
+        if (uploadedUrls.length > 0) {
+            alert(`✅ ${uploadedUrls.length}개 파일 업로드 성공!`);
+        } else {
+            alert("❌ 모든 파일 업로드 실패!");
+        }
+
+        // 업로드된 파일들 미리보기 추가
+        displayUploadedFiles(uploadedUrls);
+    }
+
+    // 🔹 업로드된 파일 미리보기 표시
+    function displayUploadedFiles(files) {
+        const uploadStatus = document.getElementById("uploadStatus");
+        files.forEach(({ fileName, fileUrl }) => {
+            const img = document.createElement("img");
+            img.src = fileUrl;
+            img.className = "preview";
+
+            const link = document.createElement("a");
+            link.href = fileUrl;
+            link.target = "_blank";
+            link.innerHTML = `<p>${fileName}</p>`;
+
+            uploadStatus.appendChild(img);
+            uploadStatus.appendChild(link);
+        });
+    }
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        const div = document.querySelector('div');
+
+        setInterval(function () {
+            const now = new Date();
+            div.innerHTML = `${now.getFullYear()}년 ${now.getMonth() + 1}월
+            ${now.getDate()}일 ${getDayOfWeek(now.getDay())} 
+            ${now.getHours()} 시 ${now.getMinutes()}분 ${now.getSeconds()} 초`;
+        }, 1000)
+
+        function getDayOfWeek(day) {
+            if (day == 0) return '일요일';
+            if (day == 1) return '월요일';
+        }
+    </script>
+</body>
+
+</html>

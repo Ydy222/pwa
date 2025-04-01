@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오맵 - 대구 교통 노선 시각화</title>
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e2e2a254b45f875ca65de396caabf107"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>🗺️ 대구 교통 노선 지도</h2>
+<div id="map"></div>
+
+<script>
+    const DATA_API_KEY = "6j4MG9vFqOJ24QdvW%2BQ1R5lChK83ym4k0UFBww6Kv%2FGKEmRsYrtwq%2FTnVYqpWX640SMT%2BQXrEdOTn2zFEzdC0g%3D%3D"; // 대구시 OpenAPI 키 입력
+    const KAKAO_API_KEY = "e2e2a254b45f875ca65de396caabf107"; // 카카오 API 키 입력
+
+    async function getNodeCoords(nodeId) {
+        const url = `https://apis.data.go.kr/6270000/dbmsapi01/getNode?serviceKey=${DATA_API_KEY}&nodeId=${nodeId}`;
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            const xml = new window.DOMParser().parseFromString(text, "text/xml");
+
+            const lat = xml.getElementsByTagName("lat")[0].textContent;
+            const lng = xml.getElementsByTagName("lng")[0].textContent;
+            return { lat: parseFloat(lat), lng: parseFloat(lng) };
+        } catch (error) {
+            console.error("노드 좌표 변환 실패:", error);
+            return null;
+        }
+    }
+
+    async function drawRoute() {
+        const routeData = [
+            { linkId: "151003167000", stNode: "7011030000", edNode: "1510021600" },
+            { linkId: "151003167100", stNode: "1510021600", edNode: "1600008900" },
+            { linkId: "160021100000", stNode: "1600008900", edNode: "1600008800" }
+        ];
+
+        const mapContainer = document.getElementById("map");
+        const mapOption = {
+            center: new kakao.maps.LatLng(35.8714, 128.6014),
+            level: 7
+        };
+        const map = new kakao.maps.Map(mapContainer, mapOption);
+
+        let linePath = [];
+
+        for (let route of routeData) {
+            const startCoords = await getNodeCoords(route.stNode);
+            const endCoords = await getNodeCoords(route.edNode);
+
+            if (startCoords && endCoords) {
+                const startLatLng = new kakao.maps.LatLng(startCoords.lat, startCoords.lng);
+                const endLatLng = new kakao.maps.LatLng(endCoords.lat, endCoords.lng);
+
+                linePath.push(startLatLng);
+                linePath.push(endLatLng);
+
+                new kakao.maps.Marker({ position: startLatLng, map: map });
+                new kakao.maps.Marker({ position: endLatLng, map: map });
+
+                const polyline = new kakao.maps.Polyline({
+                    path: [startLatLng, endLatLng],
+                    strokeWeight: 5,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 0.7,
+                    strokeStyle: "solid"
+                });
+                polyline.setMap(map);
+            }
+        }
+    }
+
+    drawRoute();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 확인</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const supabase = window.supabase.createClient(
+                "https://fsvilhpktvuyimkzgflu.supabase.co",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI"
+            );
+
+            async function fetchReservations() {
+                const { data, error } = await supabase
+                    .from("reservation")
+                    .select("*")
+                    .eq('name','ㅂㅈㄷㄱ')
+                    .eq('phone','ㅂㅈㄷㄱ');
+                    // .order("created_at", { ascending: false });
+
+                if (error) {
+                    console.error("Error fetching reservations:", error);
+                    return;
+                }
+
+                if (data.length === 0) {
+                    document.querySelector("#reservation-list").innerHTML = "<p>예약 내역이 없습니다.</p>";
+                    return;
+                }
+
+                const reservationList = document.querySelector("#reservation-list");
+                reservationList.innerHTML = "";
+
+                data.forEach(res => {
+                    const reservationItem = document.createElement("div");
+                    reservationItem.className = "reservation-item p-4 border border-gray-300 rounded-lg shadow-sm mb-4";
+
+                    let reservationHTML = `
+                        <h3 class="text-lg font-bold">예약 번호: ${res.id}</h3>
+                        <p><strong>이름:</strong> ${res.name || 'N/A'}</p>
+                        <p><strong>연락처:</strong> ${res.phone || 'N/A'}</p>
+                        <p><strong>예약 유형:</strong> ${res.type === "keep" ? "짐보관" : "짐이동"}</p>
+                        <p><strong>예약 상태:</strong> ${res.status}</p>
+                        <p><strong>결제 상태:</strong> ${res.payment_status}</p>
+                        <p><strong>총 가격:</strong> ${res.total_price.toLocaleString()}원</p>
+                    `;
+
+                    if (res.type === "keep") {
+                        reservationHTML += `
+                            <p><strong>보관 장소:</strong> ${res.use_keep_location}</p>
+                            <p><strong>보관 날짜:</strong> ${res.use_date_keep}</p>
+                            <p><strong>짐 맡길 시간:</strong> ${res.use_start_time}</p>
+                            <p><strong>짐 찾을 시간:</strong> ${res.use_end_time}</p>
+                        `;
+                    } else if (res.type === "move") {
+                        reservationHTML += `
+                            <p><strong>출발 장소:</strong> ${res.use_start_location}</p>
+                            <p><strong>도착 장소:</strong> ${res.use_end_location}</p>
+                            <p><strong>출발 날짜:</strong> ${res.use_start_date}</p>
+                            <p><strong>도착 날짜:</strong> ${res.use_end_date}</p>
+                            <p><strong>출발 시간:</strong> ${res.use_start_time}</p>
+                            <p><strong>도착 시간:</strong> ${res.use_end_time}</p>
+                        `;
+                    }
+
+                    reservationHTML += `
+                        <p><strong>쇼핑백/백팩 개수:</strong> ${res.shopping_bag_count}</p>
+                        <p><strong>작은 캐리어 개수:</strong> ${res.carrier_small_count}</p>
+                        <p><strong>큰 캐리어 개수:</strong> ${res.carrier_large_count}</p>
+                        <p><strong>기타 물품:</strong> ${res.other_items || '없음'}</p>
+                        <p><strong>문의 사항:</strong> ${res.inquiries || '없음'}</p>
+                        <button class="cancel-button bg-red-500 text-white px-4 py-2 rounded mt-3" data-id="${res.id}">예약 취소</button>
+                    `;
+
+                    reservationItem.innerHTML = reservationHTML;
+                    reservationList.appendChild(reservationItem);
+                });
+
+                document.querySelectorAll(".cancel-button").forEach(button => {
+                    button.addEventListener("click", function () {
+                        const reservationId = this.getAttribute("data-id");
+                        cancelReservation(reservationId);
+                    });
+                });
+            }
+
+            async function cancelReservation(reservationId) {
+                if (!confirm("예약을 취소하시겠습니까?")) return;
+
+                const { data, error } = await supabase
+                    .from("reservation")
+                    .update({ status: "canceled" })
+                    .eq("id", reservationId)
+                    .select();
+
+                if (error) {
+                    console.error("Error canceling reservation:", error);
+                } else {
+                    alert("예약이 취소되었습니다.");
+                    fetchReservations();
+                }
+            }
+
+            fetchReservations();
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .reservation-item {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="text-3xl font-bold text-center mb-6">예약 확인</h1>
+<div id="reservation-list" class="max-w-4xl mx-auto">
+    <p>예약 데이터를 불러오는 중...</p>
+</div>
+
+</body>
+</html>

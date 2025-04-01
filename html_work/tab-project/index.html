@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // document.getElementById('container').click = function(){
+    //   document.getElementById('container').style.animationPlayState = 'paused';
+    // }
+  </script>
+  <style>
+    *{ margin: 0; padding: 0; box-sizing: border-box; }
+    li { list-style-type: none; }
+    a { text-decoration: none; color: rgb(30,30,30); }
+    a:hover{ text-decoration: underline; }
+    #header{ padding: 10px 30px; background-color: rgb(100,200,255); }
+    #menu{
+      position: relative;
+      height: 50px;
+      background-color: rgb(200,50,150);
+    }
+    #menu ul{
+      overflow: hidden;
+    }
+    #menu li{
+      float: left;
+    }
+    #menu > #left-menu{
+      background-color: rgb(10,250,200);
+      position: absolute;
+      left:0;
+    }
+    #menu > #right-menu{
+      background-color: rgb(10,250,200);
+      position: absolute;
+      right:0;
+    }
+  </style>
+  <style>
+    #container{
+      background-color: rgb(230,230,230);
+      animation-name: aaa;
+      animation-duration: 100s;
+      /* animation-delay: 10s; */
+
+      /* animation-play-state: paused; */
+      animation-iteration-count: infinite;
+    } 
+
+    #content > div{
+      animation-name: aaa;
+      animation-duration: 100s;
+      /* animation-delay: 10s; */
+      animation-iteration-count: infinite;
+      animation-direction: reverse;
+    }
+    
+    @keyframes aaa{
+      0%{
+        width: 100px;
+        transform: rotate(0deg);
+      }
+      100%{
+        width: 100%;
+        transform: rotate(360deg);
+      }
+    }
+
+    /* @keyframes bbb{
+      0%{
+        width: 100px;
+        transform: rotate(360deg);
+      }
+      100%{
+        width: 100%;
+        transform: rotate(0deg);
+      }
+    } */
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div style="position: fixed; width: 100%;">
+      <div id="header">
+        <h1>Title</h1>
+      </div>
+      <div id="menu">
+        <div id="left-menu">
+          <ul>
+            <li><a href="">JavaScript</a></li>
+            <li><a href="">React</a></li>
+            <li><a href="">Node</a></li>
+          </ul>
+        </div>
+        <div id="right-menu">
+          <ul>
+            <li><a href="">GitHub</a></li>
+            <li><a href="">AWS</a></li>
+            <li><a href="">Docker</a></li>
+          </ul>
+        </div>
+      </div>
+      <style>
+        ul li { text-align: center; }
+        ul li a { display: inline-block; width: 150px; line-height: 50px; }
+      </style>
+    </div>
+    <div id="content" style="padding-top: 110px;">
+      <div id="left">
+        <h1>Title</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione quaerat, in ipsam alias nobis harum temporibus distinctio asperiores laborum sit id. Error provident rerum, voluptatem autem ipsum repellendus laboriosam molestiae.</p>
+      </div>
+      <div id="right">
+        <div style="padding-right: 200px;">
+          <h1>Lorem Lorem</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <h1>Lorem Lorem</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <h1>Lorem Lorem</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <h1>Lorem Lorem</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi minima dolor porro provident iure dolore similique harum. Inventore aliquam, pariatur voluptate sunt, neque ipsum fugiat deserunt molestias eius tempora delectus?</p>
+        </div>
+      </div>
+    </div>
+    <style>
+      #content { overflow: hidden; min-width: 760px }
+      #content > div { float: left; }
+      #left { 
+        padding: 30px; width: 200px; background-color: rgb(100,150,100); }
+      #right { 
+        padding-left: 10px;
+        margin-right: -200px;
+        width: 100%; 
+        background-color: rgb(50,200,150); 
+      }
+    </style>
+    <div style="text-align: center; padding: 20px;">
+      <h1>COPY RIGHT 박명회 만듬</h1>
+    </div>
+  </div>
+</body>
+</html>

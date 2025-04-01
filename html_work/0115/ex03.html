@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{ margin: 0; padding: 0; box-sizing: border-box; }
+    #container{
+      min-width: 1140px;
+      width: 1140px;
+      margin: 0 auto;
+    }
+    #header{
+      position: relative;
+      background-color: rgb(200,200,10);
+      height: 100px;
+    }
+    #header > #nav{
+      position: absolute;
+      right: 0;
+      top:0;
+    }
+    #header > #nav li{
+      display: inline-block;
+      width: 150px;
+      height: 50px;
+      margin-top: 20px;
+      background-color: rgb(20,200,100);
+    }
+    #header > #nav a{
+      text-decoration: none;
+      font-size: 2rem;
+      display: inline-block;
+      color: white;
+      text-align: center;
+      width: 150px;
+      height: 50px;
+      background-color: rgb(20,100,150);
+    }
+    #contents{
+      overflow: hidden;
+      height: 2000px;
+      background-color: rgb(230,230,200);
+    }
+    #contents > #left-side, #content{
+      float: left;
+    }
+    #left-side{
+      background-color: rgb(120,200,250);
+      width: 340px;
+    }
+    #contents > #content{
+      width: 450px;
+      background-color: rgb(200,210,200);
+    }
+    #contents > #right-side{
+      width: 340px;
+      float: right;
+      background-color: rgb(220,200,200);
+    }
+    #footer{
+      padding: 30px 0;
+      text-align: center;
+      background-color: rgb(220,120,200);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div style="position: fixed; height: 100px; width: 1140px;">
+      <div id="header">
+        <h1 style="line-height: 100px; margin-left: 30px;">사이트 제목</h1>
+        <div id="nav">
+          <ul>
+            <li><a href="">메뉴1</a></li>
+            <li><a href="">메뉴2</a></li>
+            <li><a href="">메뉴3</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="contents" style="padding-top: 150px;">
+      <div id="left-side">
+        <h1>왼쪽사이드</h1>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JAVASCRIPT</li>
+          <li>NODE</li>
+        </ul>
+      </div>
+      <div id="content">
+        <h1>본문</h1>
+        <p>Ipsum culpa veniam irure fugiat minim. Aliquip amet commodo reprehenderit labore proident consectetur exercitation quis do proident exercitation anim nostrud sint. Lorem id cupidatat minim minim est.</p>
+      </div>
+      <div id="right-side">
+        <h1>오른쪽사이드</h1>
+        <ul>
+          <li>REACT</li>
+          <li>C#</li>
+          <li>Express</li>
+          <li>JAVA</li>
+        </ul>
+      </div>
+    </div>
+    <div id="footer">
+      <h1>푸터</h1>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      select {
+        overflow-y: hidden;
+        text-align: center;
+        background-color: rgb(236, 236, 236);
+        width: 100px;
+        height: 60px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function aaa() {
+        console.log("출력됩니다");
+        alert("출력");
+        // "11"+"22" = 1122
+        // 11+22 = 33
+        alert(  
+          parseInt(document.getElementById("num1").value) 
+          + 
+          parseInt(document.getElementById("num2").value) 
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <form action="ex02.html">
+      <h3>여러과목을 선택할 수 있습니다.</h3>
+      <input type="text" name="id" id="" placeholder="아이디" />
+      <input type="text" name="pw" id="" placeholder="비밀번호" />
+      <select name="" id="" multiple>
+        <option value="">국어</option>
+        <option value="">영어</option>
+        <option value="">수학</option>
+      </select>
+      <!-- <input type="submit" value="전송"> -->
+      <br />
+      <br />
+      <input type="text" id="num1" />
+      <br />
+      <input type="text" id="num2" />
+      <br />
+      <br />
+      <button>❤💞💖😘🙂👩‍🦱전송</button>
+      <button type="reset">취소</button>
+      <button onclick="aaa()" type="button">그냥버튼...</button>
+    </form>
+  </body>
+</html>

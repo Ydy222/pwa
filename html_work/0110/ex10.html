@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: "GmarketSansMedium";
+        src: url("GmarketSansMedium.woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "GmarketSansMedium";
+      }
+      li {
+        list-style-type: none;
+      }
+      a {
+        color: rgb(30, 30, 30);
+        text-decoration: none;
+      }
+      img {
+        border: 0;
+      }
+
+      #header {
+        width: 960px;
+        margin: 0 auto;
+        background-color: rgb(236, 236, 236);
+        position: relative;
+
+        height: 120px;
+      }
+      #header > #main-title {
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        cursor: pointer;
+      }
+      #header > #sub-title {
+        position: absolute;
+        bottom: 20px;
+        left: 80px;
+        cursor: pointer;
+      }
+      #header > #global-nav {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+      }
+      #header > #global-nav > ul > li {
+        float: left;
+      }
+      #header > #global-nav > ul > li > a {
+        display: block;
+        padding: 10px 30px;
+        border: 1px solid black;
+      }
+      #header > #global-nav > ul > li > a:hover {
+        background-color: rgb(100, 250, 100);
+        color: rgb(236, 236, 236);
+      }
+      #header > #global-nav > ul > li:first-child > a {
+        border-radius: 5px 0 0 5px;
+      }
+      #header > #global-nav > ul > li:last-child > a {
+        border-radius: 0 5px 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <div id="main-title">
+        <h1>MAIN-TITLE</h1>
+      </div>
+      <div id="sub-title">
+        <h3>HTML5+CSS3</h3>
+      </div>
+      <div id="global-nav">
+        <ul>
+          <li><a href="">AAA</a></li>
+          <li><a href="">BBB</a></li>
+          <li><a href="">CCC</a></li>
+          <li><a href="">DDD</a></li>
+        </ul>
+      </div>
+      <div id="main-nav">
+        <ul>
+          <li><a href="">HTML</a></li>
+          <li><a href="">CSS</a></li>
+          <li><a href="">JAVASCRIPT</a></li>
+          <li><a href="">NODE</a></li>
+          <li><a href="">REACT</a></li>
+          <li><a href="">DB</a></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div id="section">
+        <h1>Section</h1>
+      </div>
+      <div id="aside">
+        <h1>Aside</h1>
+      </div>
+      <div id="footer">
+        <h1>Footer</h1>
+      </div>
+    </div>
+  </body>
+</html>
+

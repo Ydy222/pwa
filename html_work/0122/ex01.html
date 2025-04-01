@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* flex,gird 부모태그*/
+    #wrap{
+      display: grid;
+      grid-template-columns: 1fr 3fr 2fr 1fr;
+      grid-template-rows: minmax(100px,auto);
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+    }
+    .items{
+      /* overflow: hidden; */
+      padding: 10px;
+      background-color: rgb(100,200,200);
+    }
+    .items:nth-child(2n+1){
+      background-color: rgb(200,100,200);
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div class="items">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque tempore, fugiat in dolorum aliquid tempora, ex molestias tenetur aperiam eligendi quam nam blanditiis! Illum impedit neque at commodi vero ab.</div>
+    <div class="items">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, minima? Rem, voluptatum! Harum, corrupti iste excepturi ducimus dolorem aut, soluta autem deserunt blanditiis mollitia pariatur at odit vero sapiente magnam.</div>
+    <div class="items">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis blanditiis deleniti exercitationem animi doloribus mollitia voluptatum quidem reprehenderit magnam asperiores rerum quod, impedit ratione in nulla vero, beatae aliquam nihil.</div>
+    <div class="items">Deserunt deserunt eiusmod occaecat ullamco anim irure aliquip. Exercitation pariatur laboris sunt deserunt adipisicing ex enim quis dolore. Cupidatat nulla ad minim nulla nulla est. Consequat sint aliquip est cupidatat incididunt sit consectetur quis fugiat eiusmod reprehenderit elit.</div>
+    <div class="items">Consectetur magna </div>
+  </div>
+  
+</body>
+</html>

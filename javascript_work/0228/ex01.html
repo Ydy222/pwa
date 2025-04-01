@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase SQL 연산자 테스트</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <h2>Supabase SQL 연산자 테스트</h2>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const supabase = window.supabase.createClient(
+                "https://fsvilhpktvuyimkzgflu.supabase.co",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI"            );
+
+            async function testArithmetic() {
+                const { data, error } = await supabase.rpc("calculate_expression", { input_value: 10 });
+
+                if (error) {
+                    console.error("Error executing arithmetic operation:", error);
+                } else {
+                    console.log("Arithmetic Result:", data);
+                }
+            }
+
+            testArithmetic();
+        });
+
+    </script>
+</body>
+
+</html>

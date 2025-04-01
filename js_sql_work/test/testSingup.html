@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+
+        var supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+        async function signUpNewUser() {
+            const { data, error } = await supabase.auth.signUp({
+                email: 'dron512@naver.com',
+                password: 'example-password',
+                options: {
+                    emailRedirectTo: 'https://example.com/welcome',
+                },
+            })
+            console.log(data);
+            console.log(error);
+        }
+        signUpNewUser();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

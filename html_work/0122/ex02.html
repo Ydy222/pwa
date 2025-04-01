@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wrap{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .items{
+      /* overflow: hidden; */
+      padding: 10px;
+      background-color: rgb(100,200,200);
+    }
+    .items:nth-child(2n+1){
+      background-color: rgb(200,100,200);
+    }
+    .item1{
+      grid-column: 1/3;
+    }
+    .item2{
+      grid-column: 3/4;
+    }
+    .item3{
+      grid-column: 1/4;
+      /* grid-row-start: 2; */
+    }
+    .item4{
+      grid-column: 1/2;
+    }
+    .item-blank{
+      grid-column: 2/3;
+    }
+    .item5{
+      grid-column-start: 3;
+      grid-column: 3/4;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div class="items item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque tempore, fugiat in dolorum aliquid tempora, ex molestias tenetur aperiam eligendi quam nam blanditiis! Illum impedit neque at commodi vero ab.</div>
+    <div class="items item2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, minima? Rem, voluptatum! Harum, corrupti iste excepturi ducimus dolorem aut, soluta autem deserunt blanditiis mollitia pariatur at odit vero sapiente magnam.</div>
+    <div class="items item3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis blanditiis deleniti exercitationem animi doloribus mollitia voluptatum quidem reprehenderit magnam asperiores rerum quod, impedit ratione in nulla vero, beatae aliquam nihil.</div>
+    <div class="items item4">Deserunt deserunt eiusmod occaecat ullamco anim irure aliquip. Exercitation pariatur laboris sunt deserunt adipisicing ex enim quis dolore. Cupidatat nulla ad minim nulla nulla est. Consequat sint aliquip est cupidatat incididunt sit consectetur quis fugiat eiusmod reprehenderit elit.</div>
+    <div class="item-blank"></div>
+    <div class="items item5">Consectetur magna </div>
+  </div>
+  
+</body>
+</html>

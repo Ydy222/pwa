@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes slide-in{
+            0%{
+                /* transform: translateX(-100%); */
+                transform: translateY(-200%) rotate(270deg);
+                /* transform: translateY(300%); */
+                opacity: 0;
+            }
+            100%{
+                transform: translateY(0) rotate(0);
+                /* transform: translateX(0); */
+                opacity: 1;
+            }
+        }
+        @keyframes slide-in2{
+            0%{
+                transform: translateX(-100%) rotate(270deg); 
+                /* transform: translateY(-200%) rotate(270deg); */
+                /* transform: translateY(300%); */
+                opacity: 0;
+            }
+            100%{
+                /* transform: translateY(0) rotate(0); */
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        h1{
+            /* opacity: 1; */
+            animation: slide-in 0.5s ease-in-out;
+        }
+        h2{
+            /* opacity: 1; */
+            animation: slide-in2 3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div style="height: 100vh; justify-content: center; align-items: center; display: flex">
+        <h1>안녕하세요</h1>
+        <h2>안녕하세요</h2>
+    </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 드래그앤드롭 파일 업로드</title>
+    <style>
+        #dropZone {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+        #dropZone.dragover {
+            border-color: #007bff;
+            background-color: #f8f9fa;
+        }
+        #uploadStatus {
+            text-align: center;
+        }
+        .preview {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 10px;
+        }
+    </style>
+   
+</head>
+<body>
+    <h2 style="text-align: center;">Supabase 드래그 앤 드롭 파일 업로드</h2>
+
+    <!-- 🔹 파일 드래그 앤 드롭 영역 -->
+    <div id="dropZone">📂 여기에 파일을 드래그 & 드롭하세요</div>
+
+    <!-- 🔹 업로드 상태 표시 -->
+    <div id="uploadStatus"></div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Supabase 설정
+    const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+    const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+    const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    const bucketName = "pmh"; // 저장소 버킷 이름
+
+    // 🔹 드래그 앤 드롭 관련 이벤트 처리
+    const dropZone = document.getElementById("dropZone");
+
+    // 드래그 진입 시 스타일 변경
+    dropZone.addEventListener("dragover", (event) => {
+        event.preventDefault(); // 기본 이벤트 방지
+        dropZone.classList.add("dragover");
+    });
+
+    // 드래그 나갈 때 스타일 복원
+    dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+    });
+
+    // 파일 드롭 시 업로드
+    dropZone.addEventListener("drop", async (event) => {
+        event.preventDefault();
+        dropZone.classList.remove("dragover");
+
+        const files = event.dataTransfer.files; // 드롭된 파일 가져오기
+        if (files.length === 0) return;
+
+        for (const file of files) {
+            await uploadFile(file); // 파일 업로드 실행
+        }
+    });
+
+    // 🔹 파일 업로드 함수
+    async function uploadFile(file) {
+        const fileExt = file.name.split(".").pop(); // 확장자 추출
+        const uuid = crypto.randomUUID();
+        const fileName = uuid+'.'+fileExt;
+        // Supabase Storage 업로드
+        const { data, error } = await supabase.storage
+            .from(bucketName)
+            .upload(fileName, file);
+
+        if (error) {
+            alert(`❌ 업로드 실패: ${error.message}`);
+            return;
+        }
+
+        // 🔹 업로드된 파일 URL 가져오기
+        const { data: publicUrlData } = supabase.storage
+            .from(bucketName)
+            .getPublicUrl(fileName);
+
+        // 결과 출력
+        const uploadStatus = document.getElementById("uploadStatus");
+        const img = document.createElement("img");
+        img.src = publicUrlData.publicUrl;
+        img.className = "preview";
+
+        uploadStatus.appendChild(img);
+        uploadStatus.innerHTML += `<p>✅ 업로드 성공: <a href="${publicUrlData.publicUrl}" target="_blank">${fileName}</a></p>`;
+    }
+    function sanitizeFileName(fileName) {
+        return fileName
+            .replace(/\s+/g, "_") // 공백을 언더스코어(_)로 변경
+            .replace(/[^\w.-]/g, "") // 한글 및 특수 문자 제거
+            .toLowerCase(); // 소문자로 변환 (권장)
+    }
+</script>

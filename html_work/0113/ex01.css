@@ -1,0 +1,162 @@
+@font-face {
+  font-family: "yangjin";
+  src: url("yangjin.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "yangjin";
+}
+li {
+  list-style-type: none;
+}
+a {
+  color: rgb(30, 30, 30);
+  text-decoration: none;
+}
+img {
+  border: 0;
+}
+#header {
+  width: 960px;
+  margin: 20px auto;
+  /* background-color: rgb(248, 248, 248); */
+  position: relative;
+
+  height: 140px;
+}
+#header > #main-title {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  cursor: pointer;
+}
+#header > #sub-title {
+  position: absolute;
+  bottom: 20px;
+  left: 80px;
+  cursor: pointer;
+}
+#header > #global-nav {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+#header > #global-nav > ul > li {
+  float: left;
+}
+#header > #global-nav > ul > li > a {
+  display: block;
+  padding: 10px 30px;
+  border: 1px solid black;
+}
+#header > #global-nav > ul > li > a:hover {
+  /* background-color: rgb(100, 250, 100); */
+  color: rgb(236, 236, 236);
+}
+#header > #global-nav > ul > li:first-child > a {
+  border-radius: 5px 0 0 5px;
+}
+#header > #global-nav > ul > li:last-child > a {
+  border-radius: 0 5px 5px 0;
+}
+#header > #main-nav {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+#header > #main-nav > ul > li {
+  float: left;
+}
+#header > #main-nav > ul > li > a {
+  border: 1px solid rgb(30, 30, 30);
+  padding: 10px 20px;
+  display: block;
+}
+#header > #main-nav > ul > li:first-child > a {
+  border-radius: 5px 0 0 5px;
+}
+#header > #main-nav > ul > li:last-child > a {
+  border-radius: 0 5px 5px 0;
+}
+#content {
+  /* background-color: rgb(250, 180, 250); */
+  width: 960px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+#content > div {
+  padding: 20px;
+}
+#content > #section {
+  width: 750px;
+  /* background-color: rgb(255, 255, 180); */
+  float: left;
+}
+#content > #section > div {
+  border: 1px solid rgb(30, 20, 30);
+  margin: 20px;
+  padding: 30px;
+}
+#content > #section > div > h1 {
+  padding-bottom: 20px;
+}
+#content > #aside {
+  width: 200px;
+  /* background-color: rgb(180, 255, 255); */
+  float: right;
+}
+input[type="radio"] {
+  display: none;
+}
+.buttons {
+  overflow: hidden;
+}
+.buttons > label {
+  float: left;
+  display: block;
+  border: 1px solid rgb(30, 30, 30);
+  width: 80px;
+  padding: 5px;
+}
+div.my-tab1,
+div.my-tab2 {
+  display: none; /* 화면에 안보이게 */
+}
+#tab1:checked ~ div > label:nth-child(1) {
+  background-color: rgb(30, 30, 30);
+  color: rgb(248, 248, 248);
+}
+#tab2:checked ~ div > label:nth-child(2) {
+  background-color: rgb(30, 30, 30);
+  color: rgb(248, 248, 248);
+}
+#tab1:checked ~ div.my-tab1 {
+  display: block; /* 화면에 보이게 */
+}
+#tab2:checked ~ div.my-tab2 {
+  display: block; /* 화면에 보이게 */
+}
+
+#aside > div{
+  margin: 20px 0;
+}
+#aside > div > ul > li{
+  margin: 10px 0;
+}
+
+#footer {
+  width: 960px;
+  margin: 20px auto;
+  text-align: center;
+  /* background-color: rgb(200, 250, 250); */
+}
+#footer > h1 {
+  padding: 20px;
+}
+#footer > p {
+  padding: 20px;
+}

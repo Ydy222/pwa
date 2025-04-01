@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+
+        const supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+</head>
+
+<body>
+    <!-- 
+        1. onclick = 
+        2. id 부여한다음에 queryselect -> addEventListener('click', function(){} )
+    -->
+    <button onclick="usersSelect();">USERS조회</button>
+    <button>ORDERS조회</button>
+    <h1>유저</h1>
+    <div id="users-div"></div>
+    <h1>주문</h1>
+    <div id="orders-div"></div>
+    <div>
+        이름<input type="text" id="name"/><br/>
+        이메일<input type="email" id="email"/>
+        <button>USERS입력</button>
+    </div>
+    <div>
+        상품명<input type="text" id="product_name"/><br/>
+        상품가격<input type="text" id="price"/>
+        <button>ORDERS입력</button>
+    </div>
+</body>
+
+</html>
+<style>
+    table{
+        width: 100%;
+    }
+    table,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+</style>
+<script>
+    const $usersDiv = document.querySelector('#users-div');
+    // $usersDiv.innerHTML = 'asdfasdf';
+    // $usersDiv.style.backgroundColor = 'rgb(200,100,200)';
+    // 유저테이블 내용 가져와서 출력하는 함수
+    async function usersSelect() {
+        const res = await supabase.from('users').select()
+        let rows = '';
+        for(let i = 0; i<res.data.length;i++){
+            rows = rows + `
+                <tr>
+                    <td>${res.data[i].id}</td>
+                    <td>${res.data[i].name}</td>
+                    <td>${res.data[i].email}</td>
+                    <td>${res.data[i].created_at}</td>
+                    <td>${res.data[i].active}</td>
+                </tr>
+            `;
+        }
+        let users = `
+        <div>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>가입날짜</th>
+                    <th>활성화</th>
+                </tr>
+                ${rows}
+            </table>
+        </div>
+        `;
+        $usersDiv.innerHTML = users;
+    }
+</script>

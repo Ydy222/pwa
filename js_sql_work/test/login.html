@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const supabaseUrl = "https://fsvilhpktvuyimkzgflu.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI";
+
+        var supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+    </script>
+</head>
+
+<body>
+    <input type="text" name="" id="name" placeholder="이름을 입력하세요">
+    <input type="text" name="" id="email" placeholder="email을 입력하세요">
+    <button onclick="login();">로그인</button>
+</body>
+
+</html>
+<script>
+    async function login() {
+        const name = document.querySelector('#name').value;
+        const email = document.querySelector('#email').value;
+        console.log(`name ${name}`);
+        console.log(`email ${email}`);
+        const res = await supabase.from('users').select('*').eq('name', name).eq('email', email);
+        if (res.data.length > 0){
+            await sessionStorage.setItem("user", JSON.stringify(res.data[0]));
+            alert('로그인되었습니다.');
+            location.href='users-orders.html';
+        }else{
+            alert('이름과 email을 확인해주세요');
+        }
+    }
+</script>

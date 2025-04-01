@@ -1,0 +1,8 @@
+docker run -d --name mysql-container -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=rootpassword -p 3306:3306 -d mysql:latest
+
+
+# docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=rootpassword -p 3306:3306 -d oracle
+# docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=rootpassword -p 3306:3306 -d sqlserver
+# docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=rootpassword -p 3306:3306 -d httpd

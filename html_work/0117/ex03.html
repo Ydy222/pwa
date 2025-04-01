@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{ margin: 0; padding: 0; box-sizing: border-box; }
+    ul{
+      display: flex; 
+      width: 560px;
+      margin: 20px auto;
+     }
+    li{
+      list-style-type: none;
+      width: 25%;
+      background-color: rgb(200,100,100);
+      border: 1px solid black;
+      padding-left: 20px;
+    }
+    li:first-child{
+      /* 4가지 왼쪽위 오른쪽위 오른쪽밑 왼쪽밑 */
+      border-radius: 20px 0 0 20px;
+    }
+    li:last-child{
+      border-radius: 0 20px 20px 0;
+    }
+    a{
+      display: block;
+      /* border: 1px solid black; */
+      width: 100%;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><a href="">HOME</a></li>
+    <li><a href="">HTML</a></li>
+    <li><a href="">CSS</a></li>
+    <li><a href="">Jquery</a></li>
+  </ul>
+</body>
+</html>

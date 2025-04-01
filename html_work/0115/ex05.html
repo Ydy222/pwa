@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      background-color: rgb(200,200,200);
+
+      
+    }
+    div > p{
+      color: blue;
+    }
+    #fpp:hover + p{
+      background-color: rgb(200,200,200);
+      
+      animation-name: qwerqwer;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+    #fpp ~ p{
+      text-decoration: underline;
+    }
+    @keyframes qwerqwer{
+      from{
+        background-color: rgb(0,0,0);
+      }
+      to{
+        background-color: rgb(200,200,200);
+        transform: rotate(30deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p id="fpp">Magna eiusmod ut occaecat id sint ad cupidatat in magna in duis. Excepteur reprehenderit consectetur cillum nulla in eiusmod. Tempor non occaecat aliqua minim voluptate fugiat in minim ipsum in. Ea sunt sit excepteur id incididunt aliquip magna quis aliqua tempor anim.</p>
+    <p>Quis tempor non ipsum voluptate incididunt irure minim aliquip proident ex exercitation quis voluptate culpa. Exercitation irure in in laborum duis est nisi Lorem pariatur excepteur minim mollit deserunt. Commodo irure adipisicing pariatur veniam id minim est culpa nostrud quis occaecat consectetur id sit. Culpa aliquip elit dolore mollit aliquip ad aute.</p>
+    <section>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque doloribus quo laborum iste rem illum ut nisi debitis ipsam. Incidunt provident debitis magni ad at possimus obcaecati cupiditate sunt sapiente!</p>
+    </section>
+    <p>Commodo et consectetur aliquip non esse dolor. Aliqua ullamco voluptate officia magna irure elit in Lorem occaecat ipsum anim magna labore. Velit excepteur velit commodo magna consequat tempor laborum eiusmod esse commodo qui officia fugiat. Sint officia quis sunt tempor reprehenderit duis. Occaecat sit id voluptate reprehenderit labore velit. Eiusmod nostrud ea amet laboris nostrud pariatur. Fugiat minim quis ex anim mollit quis ut excepteur duis ad deserunt adipisicing reprehenderit.</p>
+    <p>Laborum minim occaecat velit occaecat. Consectetur do anim eu pariatur nostrud laboris elit tempor mollit aute tempor nulla laborum. Culpa labore velit deserunt excepteur nostrud sunt adipisicing nostrud eu esse ea aliquip. Officia quis voluptate laborum adipisicing laboris laborum tempor non et. Dolor exercitation cillum esse voluptate fugiat tempor Lorem qui quis laborum est elit ut amet. Proident eiusmod voluptate mollit officia voluptate. Fugiat non dolore deserunt pariatur sit tempor cupidatat do ipsum reprehenderit excepteur velit duis veniam.</p>
+  </div>
+</body>
+</html>

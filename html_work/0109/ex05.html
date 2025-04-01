@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #container { 
+      height: 300px;
+      position: relative;
+      background-color: rgb(236,236,236); 
+    }
+    #container > div { width: 100px; height: 100px; }
+    #container > #section1{ 
+      position: absolute;
+      left: 150px;
+      bottom: 0;
+      background-color: rgb(230,100,230); overflow: hidden; 
+    }
+    #container > #section2{ 
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      background-color: rgb(100,100,230); 
+    }
+    #container > #section3{ 
+      position: absolute;
+      /* top:0;
+      right: 100px; */
+      right: 0;
+      bottom: 0;
+      background-color: rgb(230,100,100); 
+    }
+  </style>
+</head>
+<body>
+  <h1>POSITION</h1>
+  <div id="container">
+    <div id="section1">
+      <h1>Heading</h1>
+    </div>
+    <div id="section2">
+      <h1>Heading</h1>
+    </div>
+    <div id="section3">
+      <h1>Heading</h1>
+    </div>
+  </div>
+</body>
+</html>

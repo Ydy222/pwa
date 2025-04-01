@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- 크롬 사파리 IE html5 -->
+  <!-- gpt 개발자?? -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+      }
+      #b1 {
+        background-color: rgb(100, 200, 100);
+        z-index: 200;
+      }
+      #b2 {
+        top: 30px;
+        left: 30px;
+        background-color: rgb(200, 100, 100);
+        z-index: 100;
+      }
+      #b3 {
+        top: 70px;
+        left: 70px;
+        background-color: rgb(100, 100, 200);
+        z-index: 300;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="box" id="b1">1</div>
+      <div class="box" id="b2">2</div>
+      <div class="box" id="b3">3</div>
+    </div>
+  </body>
+</html>

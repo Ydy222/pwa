@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="comment" placeholder="Enter your comment">
+<input type="text" id="writer" placeholder="Enter your writer">
+<button id="insert">insert버튼</button>
+<button id="select">select버튼</button>
+<div id="result" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 1rem;">
+    <div style="
+        margin-top: 1rem;
+        background-color: rgb(240, 240, 240);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;padding: 1rem"
+    >
+        <span>순번 0</span>
+        <span>코멘트 qwe</span>
+        <span>작성자 qwe</span>
+        <span>작성시간 qwe</span>
+    </div>
+</div><!-- $div.innnerHTML = ascd'qcwkejrn -->
+<div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(240, 240, 240,0.5);"
+        id="modal" class="hidden">
+    <div style="display: flex;
+                flex-direction: column;
+                width: 300px;
+                height: 150px;
+                background-color: white;
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 10px;">
+        <span id="update-id">순번 0</span>
+        <span>코멘트 <input type="text" name="" id="update-comment" placeholder="코멘트를 입력하세요"></span>
+        <span>작성자 <input type="text" name="" id="update-writer" placeholder="작성자를 입력하세요"></span>
+        <span id="update-date">작성시간 2025.02.17</span>
+        <div>
+            <button id="update">수정</button>
+            <button onclick="updateModalClose();">닫기</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    const $modal = document.querySelector('#modal');
+    // $modal.classList.add('hidden');
+
+    const $comment = document.querySelector('#comment');
+    const $writer = document.querySelector('#writer');
+    const $insert = document.querySelector('#insert');
+    const $update = document.querySelector('#update');
+
+    const $select = document.querySelector('#select');
+    const $result = document.querySelector('#result');
+
+    const $updateId = document.querySelector('#update-id');
+    const $updateComment = document.querySelector('#update-comment');
+    const $updateWriter = document.querySelector('#update-writer');
+    const $updateDate = document.querySelector('#update-date');
+
+    var dbUrl = 'https://fsvilhpktvuyimkzgflu.supabase.co';
+    var dbPassword = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI';
+
+    const supabase = window.supabase.createClient(dbUrl, dbPassword);
+
+    // updateModal창열기
+    function updateModalOpen(id,comment,writer,date){
+        $modal.classList.remove('hidden');
+        $updateId.innerText = `순번 ${id}`;
+        $updateComment.value = comment;
+        $updateWriter.value = writer;
+        $updateDate.innerHTML = `날짜 ${date}`;
+    }
+    // updateModal창 닫기
+    function updateModalClose(){
+        $modal.classList.add('hidden');
+    }
+
+    // 삭제하는 함수
+    async function deleteData(num) {
+        await supabase.from('test').delete().eq('id', num);
+        selectData();
+    }
+
+    // 저장하는 함수
+    async function insertData(comment, writer) {
+        // insert into test (comment, writer) values ('test에서넣음', '박길동');
+        const response = await supabase.from('test').insert([{comment, writer}]);
+        console.log(response);
+        selectData();
+    }
+
+    // 조회하는 함수
+    async function selectData() {
+        // select * from test order by created_at desc;
+        const response = await supabase.from('test').select('*').order('created_at', {ascending: false});
+        let result = '';
+        for (let i = 0; i < response.data.length; i++) {
+            // console.log(response.data[i]);
+            result = result + `<div style="margin-top: 1rem;
+                                        background-color: rgb(240, 240, 240);
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: center;padding: 1rem">
+                              <span>순번 ${response.data[i].id}</span>
+                              <span>코멘트 ${response.data[i].comment}</span>
+                              <span>작성자 ${response.data[i].writer}</span>
+                              <span>작성시간 ${new Date(response.data[i].created_at).toLocaleDateString()}</span>
+                              <div>
+                                  <button onclick="deleteData(${response.data[i].id})">삭제</button>
+                                  <button onclick="updateModalOpen(${response.data[i].id},
+                                                    '${response.data[i].comment}',
+                                                    '${response.data[i].writer}',
+                                                    '${new Date(response.data[i].created_at).toLocaleDateString()}')">수정</button>
+                              </div>
+                            </div>`;
+        }
+        $result.innerHTML = result;
+    }
+
+    // 저장버튼 눌렀을때
+    $insert.addEventListener('click', function () {
+        if ($comment.value.length < 1) {
+            alert('코멘트를 입력하세요');
+            $comment.focus();
+            return;
+        } else if ($writer.value.length < 1) {
+            alert('작성자를 입력하세요');
+            $writer.focus();
+            return;
+        } else {
+            insertData($comment.value, $writer.value);
+            $comment.value = '';
+            $writer.value = '';
+        }
+        console.log("test");
+    });
+
+    // 조회버튼 눌렀을때..
+    // $select.addEventListener('click', selectData );
+    $select.addEventListener('click', function () {
+        selectData();
+    });
+
+    // 수정버튼 눌렀을떄
+    $update.addEventListener('click', async function () {
+        // update test set comment = '변경할내용', writer='작성자 ;
+        const data = {
+            comment: $updateComment.value,
+            writer: $updateWriter.value,
+        };
+        // $updateId 순번 58
+        const id = $updateId.innerText.split(' ');
+        console.log(id);
+        console.log(data);
+        await supabase.from('test').update(data).eq('id',id[1]);
+        selectData();
+        updateModalClose();
+        // await supabase.from('test').update({comment:"벼ㅛㄴ경할",writer:"작성자"}).eq('id',)
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/mobile.css">
+    <script src="https://kit.fontawesome.com/582d1bfdc8.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="testCRUD.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <!-- <input type="checkbox" name="" id="menu" /> -->
+        <input type="checkbox" name="" id="menu" style="display: none;" />
+        <div id="header">
+            <div id="left-menu">
+                <h3 style="padding-left:10px; padding-top:5px;">👩‍🦰🧓<i class="fa-regular fa-face-smile fa-2x"></i>
+                </h3>
+            </div>
+            <div id="center-menu">
+                <a href="index.html">
+                    <h1 style="line-height: 60px">PMH</h1>
+                </a>
+            </div>
+            <div id="right-menu">
+                <label for="menu">
+                    <h3 style="padding-right: 10px; padding-top:5px;cursor: pointer;"><i
+                            class="fa-solid fa-bars fa-2x"></i></h3>
+                </label>
+            </div>
+        </div>
+        <hr />
+        <div id="sub-header">
+            <ul>
+                <ul>
+                    <li>
+                        <a href="html.html" style="background-color: rgb(200, 90, 90)">HTML</a>
+                    </li>
+                    <li>
+                        <a href="testCRUD.html" style="background-color: rgb(150, 200, 90)">testCRUD</a>
+                    </li>
+                    <li>
+                        <a href="css.html" style="background-color: rgb(230, 150, 90)">CSS</a>
+                    </li>
+                    <li>
+                        <a href="javasciprt.html" style="background-color: rgb(200, 90, 90)">JAVASCIPRT</a>
+                    </li>
+                    <li>
+                        <a href="github.html" style="background-color: rgb(230, 150, 90)">GITHUB</a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+        <div id="content">
+            <h1>testCRUD</h1>
+            <button
+                style="padding: 10px 16px; background-color: #007bff; color: white; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);"
+                onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'"
+                id="insert">
+                insert
+            </button>
+            <button
+                style="padding: 10px 16px; background-color: #007bff; color: white; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);"
+                onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'"
+                id="select">
+                select
+            </button>
+            <button
+                style="padding: 10px 16px; background-color: #007bff; color: white; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);"
+                onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'"
+                id="delete">
+                delete
+            </button>
+            <div id="comment-section"
+                style="display: none; max-width: 400px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+                <h3 style="margin-bottom: 12px; color: #333;">💬 댓글 입력</h3>
+
+                <label for="writer" style="font-weight: bold; color: #555; display: block; margin-bottom: 5px;">✍
+                    작성자</label>
+                <input type="text" id="writer" placeholder="이름을 입력하세요"
+                    style="width: 100%; color: #555; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px; font-size: 14px;">
+
+                <label for="comment" style="font-weight: bold; color: #555; display: block; margin-bottom: 5px;">💬
+                    댓글</label>
+                <textarea id="comment" placeholder="댓글을 입력하세요"
+                    style="width: 100%; color: #555; padding: 8px; border: 1px solid #ccc; border-radius: 4px; height: 80px; font-size: 14px;"></textarea>
+
+                <button id="submit"
+                    style="width: 100%; padding: 10px; background-color: #007bff; color: white; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; margin-top: 12px;">
+                    댓글 작성
+                </button>
+            </div>
+            <div id="datas" style="display: grid; grid-template-columns: 1fr 1fr 1fr; max-width: 1200px; margin: 20px auto; 
+                                    background-color: #fff; border: 1px solid #ddd; 
+                                    border-radius: 8px; padding: 16px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 8px 0; font-weight: bold; color: #333; border-bottom: 1px solid #eee;">
+                        <span style="color: #007bff;">📌 순번 :</span> 1
+                    </li>
+                    <li style="padding: 8px 0; color: #555; border-bottom: 1px solid #eee;">
+                        <span style="font-weight: bold; color: #28a745;">💬 댓글 :</span> 댓글입니다.
+                    </li>
+                    <li style="padding: 8px 0; color: #555; border-bottom: 1px solid #eee;">
+                        <span style="font-weight: bold; color: #dc3545;">✍ 작성자 :</span> 홍길동
+                    </li>
+                    <li style="padding: 8px 0; color: #555;">
+                        <span style="font-weight: bold; color: #6c757d;">📅 작성일자 :</span> 2025
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="footer">
+            <h1>COPY RIGHT by 박명회</h1>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    let id = 0;
+    const $insert = document.querySelector('#insert');
+    const $submit = document.querySelector('#submit');
+    const $writer = document.querySelector('#writer');
+    const $comment = document.querySelector('#comment');
+
+    const $select = document.querySelector('#select');
+    const $update = document.querySelector('#update');
+    const $delete = document.querySelector('#delete');
+    const $datas = document.querySelector('#datas');
+    const $commentSection = document.querySelector('#comment-section');
+
+    const dbUrl = 'https://fsvilhpktvuyimkzgflu.supabase.co';
+    const dbPassword = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzdmlsaHBrdHZ1eWlta3pnZmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MjUwODgsImV4cCI6MjA1NTAwMTA4OH0.LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI';
+
+    // db연결해서 dbCon 변수에 담아라
+    const dbCon = window.supabase.createClient(dbUrl, dbPassword);
+
+    function commentVisible(mid) {
+        console.log(mid);
+        if (mid) { 
+            id = mid; 
+            console.log(id);
+        }
+        if ($commentSection.style.display === 'none')
+            $commentSection.style.display = 'block';
+        else {
+            $commentSection.style.display = 'none';
+            id = 0;
+        }
+    }
+
+    $insert.addEventListener('click', function () {
+        commentVisible();
+        // insertData(dbCon);
+        // alert('저장하였습니다.');
+    });
+    $submit.addEventListener('click', function () {
+        console.log(id);
+        if (id === 0) {
+            insertData($comment.value, $writer.value);
+            $comment.value ='';
+            $writer.value = '';
+        } else {
+            updateData($comment.value, $writer.value, id);
+            $comment.value ='';
+            $writer.value = '';
+        }
+        alert('저장하였습니다.');
+    });
+
+    $select.addEventListener('click', async function () {
+        const arr = await selectData(dbCon);
+        let answer = '';
+        for (let i = 0; i < arr.length; i++) {
+            answer = answer + '<ul onclick="commentVisible(' + arr[i].id + ');" style="cursor:pointer; max-width: 400px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">';
+            answer = answer + '<li style="padding: 8px 0; font-weight: bold; color: #333; border-bottom: 1px solid #eee;"><span style="color: #007bff;">📌 순번 ' + arr[i].id + '</span></li>';
+            answer = answer + '<li style="padding: 8px 0; font-weight: bold; color: #333; border-bottom: 1px solid #eee;"><span style="font-weight: bold; color: #28a745;">💬코멘트' + arr[i].comment + '</span></li>';
+            answer = answer + '<li style="padding: 8px 0; font-weight: bold; color: #333; border-bottom: 1px solid #eee;"><span style="font-weight: bold; color: #dc3545;">✍작성자' + arr[i].writer + '</span></li>';
+            answer = answer + '<li style="padding: 8px 0; font-weight: bold; color: #333; border-bottom: 1px solid #eee;"><span style="font-weight: bold; color: #6c757d;">📅작성시간' + new Date(arr[i].created_at).toLocaleString() + '</span></li>';
+            // 체크박스 추가 부분
+            answer += '<li style="padding: 8px 0; display: flex; align-items: center; justify-content:end">';
+            answer += '<input type="checkbox" id="checkbox_' + arr[i].id + '" value="' + arr[i].id + '" style="margin-right: 8px; padding:1rem; width:1.2rem; height:1.2rem">';
+            answer += '<label for="checkbox_' + arr[i].id + '" style="cursor: pointer; color: #555;">선택</label>';
+            answer += '</li>';
+            answer = answer + '</ul>';
+        }
+        $datas.innerHTML = answer;
+    });
+
+    $delete.addEventListener('click', function () {
+        $checkboxs = document.querySelectorAll("input[type='checkbox']");
+        var deleteArr = [];
+        for (let i = 0; i < $checkboxs.length; i++) {
+            if ($checkboxs[i].checked) {
+                if (Number.isInteger(parseInt($checkboxs[i].value)))
+                    deleteArr.push($checkboxs[i].value);
+            }
+        }
+        deleteData(deleteArr);
+        alert('삭제하였습니다.');
+    });
+
+
+
+</script>

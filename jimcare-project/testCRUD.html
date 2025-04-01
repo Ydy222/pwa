@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="a.js"></script>
+</head>
+<body>
+    <button id="insert">insert</button>
+    <button id="select">select</button>
+    <button id="update">update</button>
+    <button id="delete">delete</button>
+    <div id="datas">
+        <ul>
+            <li>순번 : 1</li>
+            <li>댓글 : 댓글입니다.</li>
+            <li>작성자 : 홍길동</li>
+            <li>작성일자 : 2025</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    const $insert = document.querySelector('#insert');
+    const $select = document.querySelector('#select');
+    const $update = document.querySelector('#update');
+    const $delete = document.querySelector('#delete');
+    const $datas = document.querySelector('#datas');
+
+    const dbUrl = 'https://fsvilhpktvuyimkzgflu.supabase.co';
+    const dbPassword = '..LU7A0fgqUj2eia-xunOWZYDuvfSvuM-a1_4V3TffXrI';
+
+    // db연결해서 dbCon 변수에 담아라
+    const dbCon = window.supabase.createClient(dbUrl, dbPassword);
+
+    //                                      ()=>{                        }
+    $insert.addEventListener('click', function(){
+        insertData(dbCon);
+        alert('저장하였습니다.');
+    });
+
+    $select.addEventListener('click', async function() {
+        const arr = await selectData(dbCon);
+        let answer = '';
+        for( let i = 0; i< arr.length; i++ ){
+            answer = answer + '<ul>';
+            answer = answer + '<li>순번' + arr[i].id + '</li>';
+            answer = answer + '<li>코멘트' + arr[i].comment + '</li>';
+            answer = answer + '<li>작성자' + arr[i].writer + '</li>';
+            answer = answer + '<li>작성시간' + new Date(arr[i].created_at).toLocaleString() + '</li>';
+            answer = answer + '</ul>';
+        }
+        $datas.innerHTML = answer;
+    });
+
+    $update.addEventListener('click', function() {
+        alert('수정하였습니다.');
+    });
+
+    $delete.addEventListener('click', function() {
+        alert('삭제하였습니다.');
+    });
+
+
+
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>랜덤 선 애니메이션</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
+
+    .beam {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(white, transparent);
+      opacity: 0;
+      transform-origin: center;
+      animation: shine 1s ease-out forwards;
+    }
+
+    @keyframes shine {
+      0% {
+        opacity: 0;
+        transform: scaleY(0.2);
+      }
+      50% {
+        opacity: 1;
+        transform: scaleY(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: scaleY(0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function createBeam() {
+    const beam = document.createElement("div");
+    beam.classList.add("beam");
+
+    // 랜덤 위치와 방향 설정
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    const angle = Math.random() * 360;
+
+    beam.style.left = `${x}px`;
+    beam.style.top = `${y}px`;
+    beam.style.transform = `rotate(${angle}deg)`;
+
+    document.body.appendChild(beam);
+
+    // 사라진 뒤 DOM 제거
+    setTimeout(() => {
+      beam.remove();
+    }, 1000);
+  }
+
+  // 100ms 간격으로 선 생성
+  setInterval(createBeam, 10);
+</script>
+
+</body>
+</html>

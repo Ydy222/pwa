@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- shift + tab 내어쓰기 -->
+  <!-- tab 들여쓰기 -->
+  <style>
+    @font-face {
+      font-family: 'KCCHyerim-Regular';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/KCCHyerim-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: '양진체';
+      src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    * { 
+      font-family: 'KCCHyerim-Regular','양진체','Courier New', Courier, monospace;
+      margin: 0; padding: 0; box-sizing: border-box; 
+    }
+    #container { width: 560px; padding: 30px; margin: 0 auto; }
+    #container > #nav { background-color: rgb(238, 238, 238); }
+    #container > #nav > div { padding: 20px;}
+    #container > #nav h1 { display: inline; }
+
+    #container table, th, td{
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    #container th, td{
+      padding: 10px;
+    }
+
+    #container > #footer { 
+      padding: 20px;
+      text-align: center;
+      background-color: rgb(238, 238, 238); 
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="nav" style="overflow: hidden;">
+      <div style="float: left;">
+        <a href=""><h1>홈</h1></a>
+      </div>
+      <div style="float: right;">
+        <a href=""><h1>메뉴1</h1></a>
+        <a href=""><h1>메뉴2</h1></a>
+      </div>
+    </div>
+    <div>
+      <div style="overflow: hidden;">
+        <figure style="float: left;">
+          <img src="images/main1.gif" alt="">  
+          <figcaption>먹자먹자</figcaption>
+        </figure>
+        <figure>
+          <img src="images/main2.gif" alt="" style="width: 175px;">  
+          <figcaption>춤추자</figcaption>
+        </figure>
+      </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium commodi perspiciatis est, eos odio blanditiis harum a qui corrupti nihil laudantium quo sint nesciunt? Cumque sequi est placeat qui laboriosam.</p>
+    </div>
+    <div style="padding: 20px;">
+      <h1>Education</h1>
+      <table style="width: 100%;">
+        <caption>
+          학력사항
+        </caption>
+        <thead>
+          <tr>
+            <th>출신학교</th>
+            <th>전공</th>
+            <th>기간</th>
+            <th>구분</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ㅁㅁㅁ대학교</td>
+            <td>컴퓨터공학</td>
+            <td>2004.3~2008.2</td>
+            <td>졸업</td>
+          </tr>
+          <tr>
+            <td>O O O 고등학교</td>
+            <td>-</td>
+            <td>2001.3~2004.2</td>
+            <td>졸업</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="footer"><h1>CopyRight 박명회</h1></div>
+  </div>
+  <div>asdfasdf</div>
+</body>
+</html>

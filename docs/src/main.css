@@ -1,0 +1,115 @@
+.wrap {
+    background-color: #ccc;
+    width: 100%;
+    height: 1024px;
+}
+
+.header {
+    background-color: #ffffff;
+    width: 100%;
+    position: fixed;
+}
+
+.nav {
+    display: flex;
+    width: 75%;
+    margin: 0 auto;
+    
+}
+
+.logo {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    width: 60%;
+    z-index:1;
+}
+
+.menu > ul {
+    display: flex;
+}
+
+.menu > ul > li {
+    width: 25%;
+}
+
+.menu > ul > li > a {
+    display: block;
+    line-height: 87px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.menu > ul > li > a:hover {
+    color: #ffb74c;
+}
+
+.language {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select_language {
+    color: #0066CC;
+    border-bottom: solid 1px #0066CC;
+    line-height: 35px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.select_language::after {
+    content: "▼";
+}
+
+.sub_menu_container {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 221px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub_menu {
+    width: 45%;
+    height: 100%;
+    display: flex;
+}
+
+.sub_menu > ul {
+    width: 25%;
+    text-align: center;
+    border-right: solid 0.5px #fff;
+    margin-top: 20px;
+}
+
+.sub_menu > ul:last-child {
+    border: none;
+}
+
+.sub_menu > ul > li {
+    height: 25%;
+}
+
+.sub_menu > ul > li > a {
+    color: #fff;
+    display: inline-block;
+    width: 70%;
+    margin: 10px 0;
+    padding: 5px 0;
+}
+.content {
+    height: 210px;
+    text-align: center;
+    display: flex;
+    color: #ffffff;
+    justify-content: center;
+    background-image: url(../이벤트\ 불꽃\ 1.png)
+    
+}

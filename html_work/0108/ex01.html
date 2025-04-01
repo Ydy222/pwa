@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      position: relative;
+      width: 560px;
+      height: 100vh;
+      background-color: rgb(238,238,238);
+    }
+    #app > div {
+      background-color: beige;
+      padding-left: 30px;
+    }
+    #app > #menu {
+      position: absolute;
+      background-color: red;
+      top: 0;
+      right: 0;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <!-- float:right -> overflow:hidden -->
+  <!-- position:absoulte -> position:relative -->
+  <div id="app">
+    <div>
+      <img src="image.png" alt="">
+    </div>
+    <div id="menu">
+      <a href=""><h1>로그인</h1></a>
+      <a href=""><h1>회원가입</h1></a>
+    </div>
+  </div>
+</body>
+</html>

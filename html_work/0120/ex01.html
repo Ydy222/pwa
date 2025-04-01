@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    position relative absoulte
+    float left -> overflow hidden
+    1. pc화면
+    2. 모바일화면
+    3. 태블릿화면
+
+    animation
+    transform -> rotate
+
+    가로로 나오게 하는 속성
+    display flex
+    
+    trainsition
+  -->
+  <div id="wrap">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <style>
+    #wrap{ 
+      display: flex; gap:10px;
+    }
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(100,200,100);
+
+      transition: 2s;
+    }
+    .box:nth-child(1){
+      transition-timing-function: linear;
+    }
+    .box:nth-child(2){
+      transition-timing-function: ease;
+    }
+    .box:nth-child(3){
+      transition-timing-function: ease-in;
+    }
+    .box:nth-child(3){
+      transition-timing-function: ease-in-out;
+    }
+    #wrap:hover > div {
+      height: 200px;
+    }
+  </style>
+</body>
+</html>

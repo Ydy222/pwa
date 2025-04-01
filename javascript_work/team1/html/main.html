@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- pmh 작업함.!!-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const $menu = document.querySelector('.menu');
+            const $sub_menu_container = document.querySelector('.sub_menu_container');
+            const $sub_menu = document.querySelector('.sub_menu');
+
+            // 메뉴 위에 마우스가 올라갔을 때
+            $menu.addEventListener('mouseover', function () {
+                $sub_menu_container.classList.add('visible');
+            });
+
+            // 메뉴에서 마우스가 벗어났을 때
+            $menu.addEventListener('mouseout', function () {
+                $sub_menu_container.classList.remove('visible');
+            });
+
+            $sub_menu.addEventListener('mouseover', function () {
+                $sub_menu_container.classList.add('visible');
+            });
+
+            $sub_menu.addEventListener('mouseout', function () {
+                $sub_menu_container.classList.remove('visible');
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="nav">
+            <div class="logo">
+                <a href="main.html">
+                    <img src="../images/logo.svg" alt="with_go">
+                </a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="">서비스</a></li>
+                    <li><a href="">예약하기</a></li>
+                    <li><a href="">이벤트</a></li>
+                    <li><a href="">고객센터</a></li>
+                </ul>
+            </div>
+            <div class="language">
+                <div class="select_language">
+                    LANGUAGE
+                </div>
+            </div>
+        </div>
+        <div class="sub_menu_container">
+            <div class="sub_menu">
+                <ul>
+                    <li><a href="">위드고 소개</a></li>
+                    <li><a href="">배송</a></li>
+                    <li><a href="">보관</a></li>
+                    <li><a href="">회원등급</a></li>
+                </ul>
+                <ul>
+                    <li><a href="">예약하기</a></li>
+                    <li><a href="">조회/취소</a></li>
+                    <li><a href="">제휴숙소</a></li>
+                    <li><a href="">보관장소</a></li>
+                </ul>
+                <ul>
+                    <li><a href="">이벤트</a></li>
+                    <li><a href="">프로모션</a></li>
+                </ul>
+                <ul>
+                    <li><a href="">공지사항</a></li>
+                    <li><a href="">이용후기</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">1 : 1 문의</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="contents">
+        <div class="section1">
+
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer_infor">
+            <div class="footer_infor_con1">
+                <img src="../images/white_logo.png" width="112" height="45" alt="">
+                <ul>
+                    <li>(41593) 대구광역시 북구 옥산로 111, 대구은행 제2본점 5층 위드고</li>
+                    <li>대표자 김한용사업자등록번호 406-01-97729고객센터 +82-10-3507-5709</li>
+                </ul>
+            </div>
+            <div class="footer_infor_con2">
+                <ul>
+                    <li><a href="">이용약관</a></li>
+                    <li><a href="">개인정보처리방침</a></li>
+                </ul>
+                <p>COPYRIGHT (C) WITHGO.ALL RIGHTS RESERVED</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

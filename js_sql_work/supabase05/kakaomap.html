@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오 맵 + 대기질 API</title>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e2e2a254b45f875ca65de396caabf107"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+
+        #info {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>도시 클릭 시 대기질 정보 가져오기</h2>
+    <div id="map"></div>
+    <div id="info">도시를 클릭하면 AQI 정보가 표시됩니다.</div>
+    <!DOCTYPE html>
+    <div style="font-family: Arial, sans-serif; margin: 20px; background-color: #f8f9fa;">
+
+        <h2 style="text-align: center; color: #333;">🌍 대기오염 지표 정보</h2>
+
+        <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; 
+                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <thead>
+                <tr>
+                    <th style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd; background: #4CAF50; 
+                           color: white; font-weight: bold;">지표</th>
+                    <th style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd; background: #4CAF50; 
+                           color: white; font-weight: bold;">의미</th>
+                    <th style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd; background: #4CAF50; 
+                           color: white; font-weight: bold;">주요 원인</th>
+                    <th style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd; background: #4CAF50; 
+                           color: white; font-weight: bold;">인체 영향</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #f2f2f2;">
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><strong>PM2.5</strong>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">초미세먼지</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">자동차 배기가스, 화석연료 연소</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">폐질환, 심혈관 질환</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><strong>PM10</strong>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">미세먼지</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">공장, 황사, 도로 먼지</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">호흡기 질환, 기관지 자극</td>
+                </tr>
+                <tr style="background: #f2f2f2;">
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><strong>NO2</strong>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">이산화질소</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">자동차 배기가스, 공장</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">천식, 폐 손상</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><strong>SO2</strong>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">아황산가스</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">석탄, 석유 연소</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">눈/기관지 자극, 산성비 유발</td>
+                </tr>
+                <tr style="background: #f2f2f2;">
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><strong>CO</strong>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">일산화탄소</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">자동차 배기가스, 연소</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">두통, 질식 위험</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;"><strong>O3</strong>
+                    </td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">오존</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">배기가스 + 햇빛 반응</td>
+                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid #ddd;">피부/호흡기 자극, 오존 경보</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const API_KEY = "9473245485bdc203ba67751e7ad75cd0e2a5cdc9";  // WAQI API 키 입력
+
+        // 1️⃣ 카카오 맵 초기화
+        const mapContainer = document.getElementById("map");
+        const mapOption = {
+            center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울 중심
+            level: 12 // 줌 레벨
+        };
+        const map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 2️⃣ 도시 좌표 데이터
+        let cities = [
+            { name: "서울", lat: 37.5665, lng: 126.9780 },
+            { name: "대구", lat: 35.8714, lng: 128.6014 },
+            { name: "부산", lat: 35.1796, lng: 129.0756 },
+            { name: "인천", lat: 37.4563, lng: 126.7052 },
+            { name: "광주", lat: 35.1595, lng: 126.8526 },
+            { name: "대전", lat: 36.3504, lng: 127.3845 },
+            { name: "울산", lat: 35.5384, lng: 129.3114 }
+        ];
+
+        cities = [...cities,
+        { name: "대구", lat: 35.8714, lng: 128.6014 }, // 대구 전체
+        { name: "달서구", lat: 35.8296, lng: 128.5328 }, // 달서구
+        { name: "중구", lat: 35.8693, lng: 128.6062 }, // 중구
+        { name: "남구", lat: 35.8467, lng: 128.5971 }, // 남구
+        { name: "동구", lat: 35.8867, lng: 128.6350 }, // 동구
+        { name: "수성구", lat: 35.8588, lng: 128.6305 } // 수성구
+        ];
+
+
+        // 3️⃣ 지도에 마커 추가
+        cities.forEach(city => {
+            const marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(city.lat, city.lng),
+                map: map
+            });
+
+            // 4️⃣ 마커 클릭 이벤트 (API 호출)
+            kakao.maps.event.addListener(marker, "click", function () {
+                fetchAQI(city);
+            });
+        });
+
+        // 5️⃣ WAQI API 호출 (대기질 정보 가져오기)
+        function fetchAQI(city) {
+            const url = `https://api.waqi.info/feed/geo:${city.lat};${city.lng}/?token=${API_KEY}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "ok") {
+                        const aqi = data.data.aqi;
+                        const pm10 = data.data.iaqi.pm10 ? data.data.iaqi.pm10.v : "N/A";
+                        const pm25 = data.data.iaqi.pm25 ? data.data.iaqi.pm25.v : "N/A";
+                        const no2 = data.data.iaqi.no2 ? data.data.iaqi.no2.v : "N/A";
+                        const so2 = data.data.iaqi.so2 ? data.data.iaqi.so2.v : "N/A";
+                        const co = data.data.iaqi.co ? data.data.iaqi.co.v : "N/A";
+                        const o3 = data.data.iaqi.o3 ? data.data.iaqi.o3.v : "N/A";
+
+                        document.getElementById("info").innerHTML = `
+                            <h3>${city.name} 대기질 정보</h3>
+                            <p><strong>AQI:</strong> ${aqi}</p>
+                            <p><strong>미세먼지(PM10):</strong> ${pm10}</p>
+                            <p><strong>초미세먼지(PM2.5):</strong> ${pm25}</p>
+                            <p><strong>이산화질소(NO₂):</strong> ${no2} ppb</p>
+                            <p><strong>아황산가스(SO₂):</strong> ${so2} ppb</p>
+                            <p><strong>일산화탄소(CO):</strong> ${co} ppm</p>
+                            <p><strong>오존(O₃):</strong> ${o3} ppb</p>
+                        `;
+                    } else {
+                        document.getElementById("info").innerHTML = `< p > ${city.name} 데이터 가져오기 실패</p >`;
+                    }
+                })
+                .catch(error => console.error("API 호출 오류:", error));
+        }
+    </script>
+
+</body>
+
+</html>

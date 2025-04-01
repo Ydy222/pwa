@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* display flex grid */
+      .container {
+        width: 600px;
+        background-color: rgb(220, 220, 220);
+        border: 1px solid #333;
+        display: flex;
+        gap: 1rem;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .box {
+        /* margin: 1rem; */
+        margin-top: 1rem;
+        width: 80px;
+        background-color: #222;
+      }
+      h2 {
+        background-color: #eee;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"><h2>1</h2></div>
+      <div class="box"><h2>2</h2></div>
+      <div class="box"><h2>3</h2></div>
+    </div>
+    <div style="background-color: aqua; margin: 0 auto; width: 500px">
+      <h1>Text</h1>
+    </div>
+    <div style="background-color: aqua; display: flex; justify-content: center; align-items: center; height: 500px;">
+      <h1>Text</h1>
+    </div>
+  </body>
+</html>

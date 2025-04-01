@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module">
+        const supabaseUrl = "https://zgrjjnifqoactpuqolao.supabase.co";
+        const supabasePassword = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpncmpqbmlmcW9hY3RwdXFvbGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyNDc0NTgsImV4cCI6MjA1NjgyMzQ1OH0._Vl-6CRKdMjeDRyNoxlfect7sgusZ7L0N5OYu0a5hT0";
+        var supabase = window.supabase.createClient(supabaseUrl, supabasePassword);
+
+        const params = new URLSearchParams(location.search);
+        const pageNum = params.get('pageNum') ?? '1';
+
+        // 5개를 가져온나
+        const res = await supabase.from('review').select('*');
+        console.log(res);
+        console.log(res.data.length);
+
+        // 27
+        // 1,2,3,4,5,6
+        // + res.data.length % 5 > 0 ? 1 : 0
+        let maxPage = res.data.length / 5;
+
+        maxPage = maxPage + (res.data.length % 5 > 0 ? 1 : 0);
+        console.log(maxPage);
+
+        let pageHtml = "";
+        for (let i = 1; i < maxPage + 1; i++) {
+            pageHtml = pageHtml + `<a href="?pageNum=${i}">${i}</a>`;
+            console.log(pageHtml);
+        }
+
+        document.querySelector('#page-div').innerHTML = pageHtml;
+    </script>
+    <style>
+        h1:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-div">
+    </div>
+</body>
+
+</html>

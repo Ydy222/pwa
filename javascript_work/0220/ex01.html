@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var w = 100;
+        var y = 100;
+        window.addEventListener('DOMContentLoaded', function () {
+            const $div = document.querySelector('div');
+            // 1000ms -> 1s
+            setInterval(function () {
+                $div.style.width = w + 'px';
+                $div.style.height = y + 'px';
+                w = w + 10;
+                y = y + 10;
+            }, 1000);
+        });
+    </script>
+</head>
+
+<body>
+    <div style="width: 100px; height: 100px; background-color: rgb(200,200,200);"></div>
+</body>
+
+</html>
