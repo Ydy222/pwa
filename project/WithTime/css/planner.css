@@ -1,0 +1,100 @@
+#planner_title{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#planner_name:hover{
+    cursor:pointer;
+}
+.planner_item{
+    border-left:1px solid rgba(0,0,0,0.1);
+}
+#planner_date{
+    font-size: 10pt;
+    background-color: #f1e7ff;
+    border-radius: 5px;
+    padding:3px;
+    color:black;
+}
+#current-planner{
+    padding:5px 15px;
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: repeat(14, minmax(20px,auto));
+}
+.planner_items{
+    /* background-color: #f8f4ff; */
+    /* box-shadow: inset 0 0 2px  rgba(100, 10, 30, 1); */
+/*     border:1px solid #aaa; */
+    /* background-image: linear-gradient(to bottom, #f1e9f4 95%, #eaeaea 100%),
+        repeating-linear-gradient(to bottom, #f1cfff 0, #f1cfff 1px, transparent 1px, transparent 30px); */
+    /* border:1px solid #595066; */
+    background: repeating-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 80px);
+    background-size: 100% 100%;
+    background-color: #f8f8f8;
+    
+}
+.planner_items textarea{
+    width:100%;
+    height:62px;
+    scrollbar-width: 0;
+    resize: none;
+    background-color: transparent;
+
+}
+.time{
+    text-align: center;
+}
+#to_do_list{
+    margin: 33px auto;
+    background-color: #c4b4ff;
+    border-radius: 20px;
+    width:90%;
+    height:400px;
+    padding:15px;
+    position:relative;
+}
+#to_do_tape{
+    position:absolute;
+    top:-20px;
+    rotate: -8deg;
+    left:35%;
+    width:100px;
+    height:30px;
+    background-color: rgba(240,220,220,0.5);
+}
+#to_do_content{
+    border-top:2px solid rgba(0,0,0,0.5);
+    padding:20px;
+}
+ul li input{
+    border:none;
+    background-color: inherit;
+    width:100%;
+}
+ul li{
+    list-style-type: circle;
+}
+#for_tomorrow{
+    border-radius: 20px;
+    padding: 15px;
+    width:90%;
+    height:200px;
+    background-color: #F1EDFF;
+    margin: 20px auto;
+}
+#for_tomorrow_content{
+    border-top: 2px solid rgba(0,0,0,0.5);
+    padding:10px;
+}
+#for_tomorrow_content textarea{
+    width:100%;
+    border:none;
+    scrollbar-width: 0;
+    resize: none;
+    background-color: transparent;
+}
+
+.planner_items textarea:hover{
+    cursor: url(https://haracedaily.github.io/html_test/1st/image/pen_sm.png), auto;
+}

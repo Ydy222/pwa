@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WITH TIME</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css" rel="stylesheet">
+    <style>
+/*         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Korean", sans-serif;
+        }
+
+        #time {
+            width: 412px;
+            min-height: 917px;
+            margin: 0 auto;
+            border: 1px solid #ddd;  
+        }
+
+        #time>#header {
+            height: 80px;
+            background-color: #8466ff;
+        }
+
+        #time>#header>#back {
+            float: left;
+            padding-left: 20px;
+            padding-top: 30px;
+        } */
+
+        #time>#content {
+            background-color: white;
+            padding: 30px;
+        }
+
+        #content>#title {
+            text-align: center;
+        }
+
+        #content>#title>img {
+            margin-top: 20px;
+        }
+        
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        .form-box {
+            margin-bottom: 30px;
+            background-color: white;
+            border: 2px solid #868686; 
+            border-radius: 10px;
+            padding: 15px;
+        }
+        label {
+            font-size: 15px;
+            color: #525252;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 1px solid #868686;
+        }
+
+        button {
+            width: 60%;
+            display: block;
+            margin: 0 auto;
+            background-color: #F1EDFF;
+            color: #525252;
+            font-size: 15px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #A790FF;
+            color: white;
+        }
+
+/*         #time>#footer {
+            height: 65px;
+            background-color: #A790FF;
+        }
+
+        #time>#footer>img {
+            float: right;
+            padding-right: 15px;
+            padding-top: 28px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="time">
+        <!-- Header -->
+        <div id="header">
+            <div id="back">
+                <a href="#" onClick="history.go(-1);">
+                    <img src="image/back.png" alt="back">
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="content">
+            <div id="title">
+                <img src="image/With Time.png" alt="" style="width: 185px; height: 91px;">
+            </div>
+            <h3>아이디 찾기</h3>
+            <div class="form-box">
+                <form>
+                    <label>이 름<input type="text"></label>
+                    <label>생년월일<input type="date"></label>
+                    <label>이 메 일<input type="text"></label>
+                    <button type="submit">확 인</button>
+                </form>
+            </div>
+
+            <h3>비밀번호 찾기</h3>
+            <div class="form-box">
+                <form>
+                    <label>아 이 디<input type="password"></label>
+                    <label>이 메 일<input type="password"></label>
+                    <button type="submit">확 인</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <img src="image/made by 띠동갑.svg" alt="made">
+        </div>
+    </div>
+</body>
+
+</html>

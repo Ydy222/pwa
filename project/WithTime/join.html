@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css" rel="stylesheet">
+    <script src="https://lib.yongin.go.kr/include/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            const domainListEl = document.querySelector('#mail3');
+            const domainInputEl = document.querySelector('#mail2');
+            domainListEl.addEventListener('change', function (event) {
+                if (domainListEl.options[domainListEl.selectedIndex].value != "type") {
+                    domainInputEl.value = domainListEl.options[domainListEl.selectedIndex].value;
+                    domainInputEl.disabled = true;
+                } else { 
+                    domainInputEl.value = "";
+                    domainInputEl.disabled = false;
+                }
+            });
+        });
+
+    </script>
+    <style>
+/*         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Korean";
+        } */
+
+        label {
+            margin-left: 34px;
+        }
+
+/*         #time {
+            width: 412px;
+
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        } */
+
+   /*      #time>#header {
+            height: 80px;
+            width: 412px;
+            background-color: rgb(132, 102, 255);
+        } */
+
+        #time>#header>#back {
+            float: left;
+            padding-left: 20px;
+            padding-top: 24px;
+        }
+
+/*         #time>#content {
+            width: 412px;
+        }
+ */
+        #content>#title {
+            text-align: center;
+        }
+
+        #content>#title>img {
+            margin-top: 20px;
+        }
+
+        input[id=id],
+        input[id=pw],
+        input[id=pw2],
+        input[id=name],
+        input[id=nic1] {
+            width: 344px;
+            height: 40px;
+            font-size: 18px;
+            margin: 5px 0;
+            margin-left: 34px;
+            padding-left: 8px;
+            border: 1px solid black;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        input[id=id] {
+            width: 238px;
+            height: 40px;
+        }
+
+        #content>#form>#data>#main_id>#btn {
+            padding-top: 2px;
+            font-size: 18px;
+            width: 100px;
+            height: 40px;
+            background-color: rgb(167, 144, 255);
+            color: white;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 7px gray;
+            cursor: pointer;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #content>#form>#data>#birth1>#birth2>#year,
+        #month,
+        #day {
+            text-align: right;
+            font-size: 20px;
+            padding-right: 8px;
+        }
+
+        #content>#form>#data>#birth1>#birth2>#year {
+            width: 107px;
+            height: 40px;
+            margin-top: 7px;
+            border-radius: 10px;
+            margin-left: 34px;
+            border: 1px solid black;
+        }
+
+        #content>#form>#data>#birth1>#birth2>#month,
+        #day {
+            width: 84px;
+            height: 40px;
+            margin-top: 7px;
+            border-radius: 10px;
+            margin-left: 5px;
+            border: 1px solid black;
+        }
+
+        #content>#form>#data>#birth1>#birth2>label {
+            margin-left: 3px;
+
+        }
+
+        #content>#form>#data>#nic {
+            margin-top: 7px;
+        }
+
+        input[id=mail] {
+            font-size: 15px;
+            margin-left: 34px;
+            padding-left: 8px;
+            width: 114px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+
+        input[id=mail2] {
+            font-size: 15px;
+            padding-left: 8px;
+            width: 100px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+
+        #content>#form>#data>#email>#mail1,
+        #mail3 {
+            margin-top: 7px;
+        }
+
+        #content>#form>#data>#email>#mail3 {
+            width: 105px;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 10px;
+        }
+
+        #content>#form>#data>#join {
+            text-align: center;
+        }
+
+        #content>#form>#data>#join>input {
+            margin-top: 45px;
+            text-align: center;
+            font-size: 20px;
+            width: 250px;
+            height: 40px;
+            background-color: rgb(241, 237, 255);
+            color: rgb(134, 134, 134);
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 3px 3px 7px gray;
+            cursor: pointer;
+        }
+
+/*         #time>#footer {
+            margin-top: 50px;
+            height: 65px;
+            width: 412px;
+            background-color: rgb(167, 144, 255);
+        } */
+
+  /*       #time>#footer>img {
+            float: right;
+            padding-right: 15px;
+            padding-top: 28px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="time">
+        <div id="header">
+            <div id="back">
+                <a href="login.html"><img src="image/back.png" alt=""></a>
+            </div>
+        </div>
+        <div id="content">
+            <div id="title">
+                <img src="image/With Time.png" alt="" style="width: 185px; height: 91px;">
+            </div>
+            <form id="form" action="">
+                <div id="data">
+                    <div id="main_id">
+                        <label for="">아이디</label><br />
+                        <input type="text" name="" id="id">
+                        <input type="submit" id="btn" value="중 복 확 인">
+                    </div>
+                    <div id="main_pw">
+                        <label for="">비밀번호</label>
+                        <input type="password" name="" id="pw">
+                    </div>
+                    <div id="main_pw2">
+                        <label for="">비밀번호 재확인</label>
+                        <input type="password" name="" id="pw2">
+                    </div>
+                    <div id="main_name">
+                        <label for="">이 름</label>
+                        <input type="text" name="" id="name">
+                    </div>
+                    <div id="birth1">
+                        <label for="">생년월일</label>
+                        <div id="birth2">
+                            <input type="number" id="year"><label for="">년</label>
+                            <input type="number" id="month"><label for="">월</label>
+                            <input type="number" id="day"><label for="">일</label>
+                        </div>
+                    </div>
+                    <div id="nic">
+                        <label for="">닉네임</label>
+                        <input type="text" name="" id="nic1">
+                    </div>
+                    <div id="email">
+                        <label for="">이메일</label><br />
+                        <input type="text" id="mail">
+                        <span>@</span>
+                        <input type="text" name="" id="mail2">
+                        <select name="" id="mail3">
+                            <option value="type">직접 입력</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="daum.net">daum.net</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="nate.com">nate.com</option>
+                        </select>
+                    </div>
+                    <div id="join">
+                        <input type="submit" value="회 원 가 입">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="footer">
+            
+            <img src="image/made by 띠동갑.svg" alt="">
+        </div>
+</body>
+
+</html>

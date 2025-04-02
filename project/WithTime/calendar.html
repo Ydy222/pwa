@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WITH TIME</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <script src="js/calendar.js"></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css
+    " rel="stylesheet">
+    <!--     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+
+
+</head>
+
+<body>
+
+    <!--     <div id="container">
+        <div id="header">
+            
+        </div>
+        <div id="content">
+            <div id="calendar"></div>
+        </div>
+        
+        <div id="footer"></div>
+    </div>
+ -->
+
+    <!--  days sourced from: https://nationaldaycalendar.com/february/ -->
+    <div id="time">
+        <div id="header">
+            <div id="menu">
+                <a href="main.html"><img src="image/menu.png" alt=""></a>
+            </div>
+        </div>
+        <div id="content">
+            <div class="datepicker">
+                <div class="datepicker-top">
+                    <div class="btn-group">
+                        <button class="tag" id="test1" onclick="writeCalendar()">Today</button>
+                    </div>
+                    <div class="month-selector">
+                        <button class="arrow" onclick="prevMonth()"><i class="material-icons">chevron_left</i></button>
+                        <span id="month-name">2025년 1월
+                        </span>
+                        <select title="d" name="month" id="month" onchange="rewriteCalendar()">
+                            <option value="1">1월</option>
+                            <option value="2">2월</option>
+                            <option value="3">3월</option>
+                            <option value="4">4월</option>
+                            <option value="5">5월</option>
+                            <option value="6">6월</option>
+                            <option value="7">7월</option>
+                            <option value="8">8월</option>
+                            <option value="9">9월</option>
+                            <option value="10">10월</option>
+                            <option value="11">11월</option>
+                            <option value="12">12월</option>
+                        </select>
+                        <button class="arrow" onclick="prefMonth()"><i class="material-icons">chevron_right</i></button>
+                    </div>
+                </div>
+                <div id="datepicker-calendar">
+                    <span class="day">일</span>
+                    <span class="day">월</span>
+                    <span class="day">화</span>
+                    <span class="day">수</span>
+                    <span class="day">목</span>
+                    <span class="day">금</span>
+                    <span class="day">토</span>
+                    <button class="date faded">29</button>
+                    <button class="date faded">30</button>
+                    <button class="date faded">31</button>
+                    <button class="date">1</button>
+                    <button class="date">2</button>
+                    <button class="date">3</button>
+                    <button class="date">4</button>
+                    <button class="date">5</button>
+                    <button class="date">6</button>
+                    <button class="date">7</button>
+                    <button class="date">8</button>
+                    <button class="date">9</button>
+                    <button class="date current-day">10</button>
+                    <button class="date">11</button>
+                    <button class="date">12</button>
+                    <button class="date">13</button>
+                    <button class="date">14</button>
+                    <button class="date">15</button>
+                    <button class="date">16</button>
+                    <button class="date">17</button>
+                    <button class="date">18</button>
+                    <button class="date">19</button>
+                    <button class="date">20</button>
+                    <button class="date">21</button>
+                    <button class="date">22</button>
+                    <button class="date">23</button>
+                    <button class="date">24</button>
+                    <button class="date">25</button>
+                    <button class="date">26</button>
+                    <button class="date">27</button>
+                    <button class="date">28</button>
+                    <button class="date">29</button>
+                    <button class="date">30</button>
+                    <button class="date">31</button>
+                    <button class="date faded">1</button>
+                </div>
+            </div>
+            <div id="memberBtn">
+                <button class="btn purple" onclick="changeBackColor('#B9A6FF','purple')">유다예</button>
+                <button class="btn pastel" onclick="changeBackColor('#FFC2C2','pastel')">최준호</button>
+                <button class="btn blue" onclick="changeBackColor('#C3C6FF','blue')">노진욱</button>
+                <button class="btn green" onclick="changeBackColor('#C5FFE8','green')">박재준</button>
+            </div>
+            <hr>
+            <div id="toDoList">
+                <div class="toDoTitle toDoToday">
+                    <h4 id="toDoTitle1">2025년 01월 09일</h4>
+                </div>
+                <div class="toDoLine toDoLineToday"></div>
+                <div class="toDoContent toDoToday">
+                    <h4 id="toDoContent1">일정 내용</h4>
+                </div>
+
+                <div class="toDoTitle">
+                    <h4 id="toDoTitle2">2025년 01월 10일</h4>
+                </div>
+                <div class="toDoLine"></div>
+                <div class="toDoContent">
+                    <h4 id="toDoContent2"></h4>
+                </div>
+
+                <div class="toDoTitle">
+                    <h4 id="toDoTitle3">2025년 01월 11일</h4>
+                </div>
+                <div class="toDoLine"></div>
+                <div class="toDoContent">
+                    <h4 id="toDoContent3"></h4>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <img src="image/made by 띠동갑.svg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

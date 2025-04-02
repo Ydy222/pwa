@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WITH TIME</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css" rel="stylesheet">
+    <style>
+        /* 전체 리셋 및 기본 스타일 */
+ /*        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Korean';
+        } */
+
+        #time {
+            display: flex;
+            flex-direction: column;
+            font-family: sans-serif;
+            
+            min-height: 100vh;
+        }
+
+        /* 헤더 스타일 */
+header {
+            flex-basis: 80px;
+
+            background-color: rgb(132, 102, 255);
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        header img {
+            width: 24px;
+            height: 24px;
+
+            margin-right: 20px;
+        }
+
+        /* 메인 컨텐츠 스타일 */
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 10px;
+            color: #333;
+            letter-spacing: 3px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #E8E0FF;
+            color: #777;
+            letter-spacing: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #D0C0FF;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            flex-basis: 50px;
+            background-color: #A790FF;
+            color: #F1EDFF;
+            text-align: right;
+
+            font-size: 15px;
+            line-height: 50px;
+            font-weight:450;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="time">
+
+    <header>
+                <a href="#" onClick="history.go(-1);" style="margin-left:20px;">
+                    <img src="image/back.png" alt="back">
+                </a>
+        <a href="main.html">
+            <img src="image/burger.png" alt="메뉴">
+        </a>
+    </header>
+    
+    <main>
+        <form>
+            <label for="email">이메일</label>
+            <input type="email" id="email" required>
+            
+            <label for="message">문의</label>
+            <textarea id="message" required></textarea>
+            
+            <button type="submit">확인</button>
+        </form>
+    </main>
+    
+    <footer>made by 띠동갑</footer>
+</div>
+</body>
+</html>

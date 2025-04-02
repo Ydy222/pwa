@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css" rel="stylesheet">
+    <style>
+ /*        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Korean";
+        }
+
+        #time {
+            width: 412px;
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        } */
+
+/*         #content {
+            width: 412px;
+            width: 100%;
+        } */
+
+        #title>img {
+            display: block;
+            margin: 0 auto;
+            padding-top: 100px;
+        }
+
+        #form>#input>#input1 {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            width: 80%;
+            height: 50px;
+            font-size: 22px;
+            margin: 20px 0;
+            outline: none;
+            border: 0;
+            border-bottom: 2px solid rgba(82, 82, 82, .6);
+        }
+
+        #input2 {
+            padding: 20px 20px;
+            color: rgb(134, 134, 134);
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            vertical-align: -4px;
+            cursor: pointer;
+        }
+
+        #form>#input>#input2>#check1 {
+            float: left;
+            padding-left: 60px;
+        }
+
+        #form>#input>#input2>#check2 {
+            float: right;
+            padding-right: 60px;
+        }
+
+        #form>#input>#input2>#check1>label {
+            cursor: pointer;
+        }
+
+        #form>#input>#input2>#check2>label {
+            cursor: pointer;
+        }
+
+        #form>#login {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        #form>#login>button {
+            font-size: 22px;
+            width: 250px;
+            height: 40px;
+            background-color: rgb(167, 144, 255);
+            color: white;
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 3px 3px 7px gray;
+            cursor: pointer;
+        }
+
+        #content>#join {
+            position: absolute;
+        }
+
+        #content>#join>a {
+            position: relative;
+            top: 48px;
+            left: 100px;
+            text-decoration-line: none;
+            font-size: 14px;
+            color: rgb(134, 134, 134);
+        }
+
+        /* #content>#join>a {
+            float: left;
+            text-decoration-line: none;
+            padding-left: 100px;
+            padding-top: 50px;
+            font-size: 14px;
+            color: rgb(134, 134, 134);
+        } */
+
+
+        #content>#find>a {
+            top: 48px;
+            left: 198px;
+            position: relative;
+            text-decoration-line: none;
+            font-size: 14px;
+            color: rgb(134, 134, 134);
+        }
+
+        #naver,
+        #kakao {
+            text-align: center;
+        }
+
+        #naver {
+            padding-top: 120px;
+        }
+        
+        #naver>a img {
+            border-radius: 5px;
+        }
+
+        #kakao {
+            padding-top: 19px;
+        }
+
+        #kakao>a img {
+            border-radius: 5px;
+        }
+
+        #time>#footer {
+            margin-top: 50px;
+/*             height: 65px;
+            width: 412px;
+            width: 100%;
+            background-color: #A790FF; */
+        }
+
+    /*     #time>#footer>img {
+            float: right;
+            padding-right: 15px;
+            padding-top: 28px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="time">
+        <div id="content">
+            <div id="title">
+                <img src="image/With Time.png" alt="">
+            </div>
+            <form id="form" action="">
+                <div id="input">
+                    <div id="input1">
+                        <input type="text" name="" id="" placeholder="아 이 디">
+                        <input type="password" name="" id="" placeholder="비 밀 번 호">
+                    </div>
+                    <div id="input2">
+                        <div id="check1">
+                            <input type="checkbox" name="" id="ch1"> <label for="ch1">자동 로그인</label>
+                        </div>
+                        <div id="check2">
+                            <input type="checkbox" name="" id="ch2"> <label for="ch2">아이디 저장</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="login">
+                    <button type="submit" onclick="event.preventDefault();location.href='main.html'" value="">로 그 인</button>
+                </div>
+            </form>
+            <div id="join">
+                <a href="join.html">회원가입</a>
+            </div>
+            <div id="find">
+                <a href="id_pw.html">아이디/비밀번호 찾기</a>
+            </div>
+            <div id="naver">
+                <a href=""><img src="image/naver.svg" alt=""></a>
+            </div>
+            <div id="kakao">
+                <a href=""><img src="image/kakao.svg" alt=""></a>
+            </div>
+        </div>
+        <div id="footer">
+            <img src="image/made by 띠동갑.svg" alt="">
+        </div>
+</body>
+
+</html>

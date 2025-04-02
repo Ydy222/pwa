@@ -1,0 +1,92 @@
+
+/*****  common css */
+
+*, *:after, *:before {
+	box-sizing: border-box;
+    margin:0;
+    padding:0;
+	font-family: "Noto Sans Korean", sans-serif;
+    color:#525252;
+    font-weight:800;
+}
+
+#header>#back {
+    float: left;
+    padding-left: 20px;
+    padding-top: 24px;
+}   
+
+#time {
+    width: 412px;
+    min-height: 100vh;
+    margin: 0 auto;
+	border: 1px solid #ddd;
+}
+
+#time>#header {
+    height: 80px;
+    width: 100%;
+    background-color: rgb(132, 102, 255);
+}
+
+#time>#header>#menu img {
+    float: right;
+    margin-right: 15px;
+    margin-top: 28px;
+}
+
+#time>#content {
+    min-height: 787px;
+    width: 100%;
+    background-color: white;
+	padding-top:5px;
+    
+}
+
+
+#time>#footer {
+    height: 65px;
+    width: 100%;
+    background-color: rgb(167, 144, 255);
+}
+
+#time>#footer>img {
+    float: right;
+    padding-right: 15px;
+    padding-top: 28px;
+}
+
+button:hover{
+    filter:brightness(105%);
+}
+
+.btn{
+	width:75px;
+	margin:5px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	/* border:none; */
+    color:black;
+}
+
+.purple{
+	background-color: #D198FD;
+}
+
+.blue{
+	background-color: #C3C6FF;
+}
+
+.pastel{
+	background-color: #FFC2C2;
+}
+
+.green{
+    background-color: #C5FFE8;
+}
+
+@media screen and (max-width:500px){
+    #time {
+        width: 100%;
+    }
+}

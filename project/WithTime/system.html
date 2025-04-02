@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WITH TIME</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link href="https://cdn.jsdelivr.net/npm/noto-sans-kr@0.1.1/styles.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        /*         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans Korean", sans-serif;
+        }
+
+        #time {
+            width: 412px;
+            min-height: 917px;
+            margin: 0 auto;
+            border: 1px solid #ddd;     라인 넣어 주세요!
+        }
+
+        #header {
+            height: 80px;
+            background-color: #8466ff;
+        }
+
+        #time>#header>#menu {
+            float: right;
+            padding-right: 20px;
+            padding-top: 30px;
+        }
+ */
+        #content {
+            background-color: white;
+            padding: 30px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        .form-box {
+            margin-bottom: 30px;
+            background-color: white;
+            border: 2px solid #868686;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        label {
+            font-size: 15px;
+            color: #525252;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 1px solid #868686;
+        }
+
+        form button {
+            width: 60%;
+            display: block;
+            margin: 0 auto;
+            background-color: #F1EDFF;
+            color: #525252;
+            font-size: 15px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #A790FF;
+            color: white;
+        }
+
+        .bottom-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            /* 버튼 간격 조절 */
+            margin-top: 20px;
+        }
+
+        .bottom-buttons button {
+            width: 40%;
+            padding: 10px;
+            border: 1px solid #868686;
+            border-radius: 10px;
+            background-color: white;
+            color: #525252;
+            cursor: pointer;
+
+            display: inline-block;
+        }
+
+        .bottom-buttons button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /*         #footer {
+            height: 65px;
+            background-color: #A790FF;
+        }
+
+        #footer>img {
+            float: right;
+            padding-right: 15px;
+            padding-top: 28px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="time">
+        <!-- Header -->
+        <div id="header">
+            <div id="menu">
+                <a href="main.html">
+                    <img src="image/menu.png" alt="menu">
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="content">
+            <h3>기본 정보</h3>
+            <div class="form-box">
+                <form>
+                    <label>이 름<input type="text"></label>
+                    <label>닉 네 임<input type="text"></label>
+                    <label>생년월일<input type="date"></label>
+                    <button type="submit">확 인</button>
+                </form>
+            </div>
+
+            <h3>비밀번호 설정</h3>
+            <div class="form-box">
+                <form>
+                    <label>기존 비밀번호<input type="password"></label>
+                    <label>새 비밀번호<input type="password"></label>
+                    <button type="submit">확 인</button>
+                </form>
+            </div>
+
+            <!-- Bottom Buttons -->
+            <div class="bottom-buttons">
+                <button onclick="Inquiry()">문 의</button>
+                <button onclick="Notice()">공 지 사 항</button>
+                <button onclick="logout()">로 그 아 웃</button>
+                <button onclick="deleteAccount()">계 정 탈 퇴</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <img src="image/made by 띠동갑.svg" alt="made">
+        </div>
+    </div>
+    <script>
+        function Inquiry() {
+            location.href = "inquiring.html";        // 문의 페이지로 이동
+        }
+
+        function Notice() {
+            swal('Not Found','현재 준비중입니다.','info');
+        }
+
+        function logout() {
+            swal('로그아웃되었습니다.', '로그인 후 이용가능합니다.', 'warning', {
+                button: '로그인',
+            })
+                .then((value) => {
+                    location.href = "login.html";
+                });
+        }
+
+        function deleteAccount() {
+
+            swal('계정이 탈퇴되었습니다.', '로그인 후 이용가능합니다.', 'error', {
+                button: "로그인"
+                ,
+            })
+                .then((value) => {
+                    location.href = "login.html";
+                });
+            // 로그인 페이지로 이동
+        }
+    </script>
+</body>
+
+</html>
