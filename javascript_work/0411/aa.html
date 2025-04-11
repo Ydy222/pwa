@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="test"></div>
+    <ul id="fruits">
+      <li>Apple</li>
+      <li>Banana</li>
+    </ul>
+  </body>
+  <script>
+    // const $test = document.getElementById('test');
+    const $fruits = document.getElementById('fruits');
+    const [$apple,$banana] = $fruits.children;
+    // 요소 노드 생성
+    const $li = document.createElement('li');
+
+    // 텍스트 노드를 $li 요소 노드의 마지막 자식 노드로 추가
+    $li.appendChild(document.createTextNode('Orange'));
+    $fruits.appendChild($apple);
+    $fruits.insertBefore($li,$banana)
+
+    // $li 요소 노드를 #fruits 요소 노드의 마지막 자식 요소 앞에 삽입
+    // $fruits.insertBefore($li, $test);
+    // Apple - Orange - Banana
+  </script>
+</html>
