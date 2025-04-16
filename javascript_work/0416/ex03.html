@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+    <!-- CSSOM DOMTREE가 합쳐져서 랜더 트리 -> LAYOUT-> PAINT 생성 -->
+    <!-- CSSOM 진행-->
+      <li id="apple" style="color: red;">Apple</li>
+      <li id="banana">Banana</li>
+      <li id="orange">Orange</li>
+    </ul>
+    <!-- DOM 에서 DOM TREE 생성 -->
+    <script>
+      // id 값이 'banana'인 요소 노드를 탐색하여 반환한다.
+      // 두 번째 li 요소가 파싱되어 생성된 요소 노드가 반환된다.
+
+      // API 애플리케이션 프로그램 인터페이스 개발할때 필요한 도구들이다.
+      const $elem = document.getElementById('banana');
+
+      // 취득한 요소 노드의 style.color 프로퍼티 값을 변경한다.
+      $elem.style.color = 'red';
+    </script>
+  </body>
+</html>

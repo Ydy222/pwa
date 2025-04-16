@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="fruits">
+      <li class="red">Apple</li>
+      <li class="red">Banana</li>
+      <li class="red">Orange</li>
+    </ul>
+    <script>
+      const $fruits = document.getElementById("fruits");
+      console.log($fruits);
+
+      const { firstChild } = $fruits;
+      console.log(firstChild);
+
+      const { nextElementSibling } = firstChild;
+      console.log(nextElementSibling);
+
+      const { previousSibling } = nextElementSibling;
+      console.log(previousSibling);
+
+      // 성능저하가 일어난다.
+      console.time("innerHTML");
+      $fruits.innerHTML = `<li class="red">Apple</li>
+            <li class="red">Banana</li>
+            <li class="red">Orange</li>
+            <li class="red">Grape</li>
+        `;
+      console.timeEnd("innerHTML");
+
+      console.time('createElement');
+      const $addLi = document.createElement("li");
+      $addLi.textContent = "Grape";
+      $fruits.appendChild($addLi);
+      console.timeEnd('createElement');
+    </script>
+  </body>
+</html>

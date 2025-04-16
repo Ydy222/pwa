@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .fruit {
+        font-size: 2rem;
+      }
+      .apple {
+        background-color: rgb(50, 200, 100);
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="fruit">
+      <li class="apple">Apple</li>
+      <li class="banana">Banana</li>
+      <li class="orange">Orange</li>
+    </ul>
+    <script>
+      const $li = document.querySelector(".apple");
+      
+      console.log($li.matches("#fruit>.apple"));
+      console.log($li.matches("#fruit>.banana"));
+    </script>
+  </body>
+</html>

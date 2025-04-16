@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="foo">Hello</div>
+  </body>
+  <script>
+    const $foo = document.getElementById('foo');
+
+    console.log($foo.textContent === $foo.firstChild.nodeValue); // true
+
+    console.log($foo.textContent);
+    console.log($foo.firstChild.nodeValue);
+
+    $foo.innerHTML = `for(;;){alert('test');}`;
+  </script>
+</html>
