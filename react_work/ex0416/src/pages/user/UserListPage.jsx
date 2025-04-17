@@ -14,16 +14,19 @@ function UserListPage(props) {
     ];
     const [dataSource, setDataSource] = useState([]);
 
-    useEffect(async () => {
-        const {data} = await getUsers();
-        setDataSource(data);
+    useEffect(() => {
+        async function loadData() {
+            const {data} = await getUsers();
+            setDataSource(data);
+        }
+        loadData();
     }, []);
 
     return (
         <Content>
             <Card hoverable style={{margin: '1rem'}}>
                 <h1>안녕하세요</h1>
-                <Table columns={columns} dataSource={dataSource}>
+                <Table columns={columns} dataSource={dataSource} rowKey="id">
                 </Table>
             </Card>
         </Content>
