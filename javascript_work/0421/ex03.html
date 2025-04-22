@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>바나나</li>
+        <li>사과</li>
+        <li>수박</li>
+    </ul>
+    <button>추가</button>
+    <button>css토글</button>
+    <script>
+        const $button = document.getElementsByTagName('button')[0];
+        $button.onclick = function(){
+            const $ul = document.getElementsByTagName('ul')[0];
+            const $li = document.createElement('li');
+            $li.textContent = "텍스트";
+            $ul.appendChild($li);
+        }
+        const $toggleButton = document.getElementsByTagName('button')[1];
+        $toggleButton.onclick = function(){
+            $lis = document.getElementsByTagName('li');
+            [...$lis].forEach( $li=>{
+                $li.classList.toggle('red');
+            });
+        }
+    </script>
+</body>
+</html>

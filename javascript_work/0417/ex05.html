@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="fr">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>melon</li>
+    </ul>
+    <script>
+      const $ul = document.getElementById("fr");
+
+      const [$apple, $banana, $melon] = $ul.children;
+
+      console.log($apple);
+      console.log($banana);
+      console.log($melon);
+
+      const copyApple = $apple.cloneNode();
+      console.log(copyApple);
+      copyApple.appendChild(document.createTextNode('copyApple'));
+
+      $ul.appendChild(copyApple);
+
+      // 노드이동
+      // li마지막으로 넣어달라.
+      $ul.appendChild($apple);
+
+      // 바나나 앞에다가 메론 넣어달라
+      $ul.insertBefore($melon, $banana);
+
+      $ul.removeChild($apple);
+    </script>
+  </body>
+</html>

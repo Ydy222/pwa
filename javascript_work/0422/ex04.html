@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="ul">
+      <li>바나나</li>
+      <li>사과</li>
+      <li>수박</li>
+      <ul>
+        <li>테스트</li>
+        <li>테스트</li>
+        <li>테스트</li>
+      </ul>
+    </ul>
+    <script>
+      const $ul = document.getElementById("ul");
+      console.log($ul.children);
+
+      //   [...$ul.children].forEach(($li) => ($li.onclick = active));
+      $ul.onclick = active;
+
+      //   function active(e){
+      //     console.log(e.target);
+      //   }
+      function active({ target }) {
+        console.log(target);
+        // 바나나 사과 수박 누른게 아니면 색깔 변경 하지않게 만들려고...
+        console.log(target.matches('#ul > li'));
+        if(!target.matches('#ul > li')) return;
+
+        [...$ul.children].forEach(($li) => {
+          $li.classList.toggle("active", $li === target);
+        });
+      }
+    </script>
+  </body>
+</html>

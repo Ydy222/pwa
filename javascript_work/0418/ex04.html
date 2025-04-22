@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="id" value="안녕하세요" />
+    <button onclick="func();">속성프토퍼티확인</button>
+    <ul id="fru">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Orange</li>
+    </ul>
+    <script>
+      const $id = document.getElementById("id");
+
+      $id.oninput = function () {
+        // 일반 함수에서는 자기 자신에 해당되는 input 태그가 나온다.
+        // console.log(this);
+        console.log($id.value);
+        console.log($id.getAttribute('value'));
+
+      };
+      // 덥어씌워진다 overrite가 된다. 바뀐다.
+    //   $id.oninput = () => {
+        // 화살표함수에서는 상위에 해당되는 window가 나온다
+        // console.log(this);
+    //   };
+      // 최신값을 변경 초기값을 변경할려면 setAttribute 사용해야함.
+      $id.value = "변경변경";
+
+      function func() {
+        // 초기값
+        console.log($id.getAttribute("value"));
+        // 현재값
+        console.log($id.value);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!--
+    이벤트
+    clickEvent -> Event 객체
+    target -> 어디에서 이벤트가 발생했는지
+    currentTarget -> 어디에 이벤트가 걸려있는지 확인
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="fru">
+      <li>바나나</li>
+      <li>사과</li>
+      <li>애플</li>
+    </ul>
+    <input type="text" id="input" />
+    <script>
+      const $ul = document.getElementById("fru");
+      const $input = document.getElementById("input");
+
+      // event
+      $ul.addEventListener(
+        "click",
+        function (event) {
+          // 0이벤트 전파 X 1 캡처링 2 target 3 버블링
+          console.log(event.eventPhase);
+          console.log(event.currentTarget);
+          console.log(event.target);
+        },
+        false
+      );
+      $input.addEventListener("keyup", function (event) {
+        console.log(event);
+        console.log(event.target);
+        console.log(event.currentTarget);
+        console.log(event.key);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: 'SBAggroB', serif !important;
+}
+
+#root, body, html {
+    width: 100%;
+    max-width: 1900px;  /* 너비 고정 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">0</button>
+    <button id="btn2">0</button>
+    <span id="msg"></span>
+    <script>
+      const num = 10;
+      const $btn1 = document.querySelector("#btn1");
+      const $msg = document.querySelector("#msg");
+
+      /*
+      const add = function (num) {
+        return function (e) {
+          $msg.textContent = `num = ${num} e=${e.target}`;
+        };
+      };
+      */
+      const add = (num) => (e) =>
+        ($msg.textContent = `num = ${num} e=${e.target}`);
+      $btn1.onclick = add(num);
+
+      //   const add = (num111, eeee) => {
+      //     $msg.textContent = `num111 = ${num111} e=${eeee.target}`;
+      //   };
+
+      //   $btn1.onclick = (e) => {
+      //     add(num, e);
+      //   };
+
+      const $btn2 = document.querySelector("#btn2");
+      $btn2.addEventListener("click", function (e) {
+        console.log(e.target);
+        console.log(e.currentTarget);
+        console.log(this);
+        ++this.textContent;
+      });
+    </script>
+  </body>
+</html>

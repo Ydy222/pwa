@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button id="button1">버튼1</button>
+        <button id="button2">버튼2</button>
+        <button id="button3">버튼3</button>
+    </div>
+    <script>
+        document.querySelector('#container').onclick = function(){
+            console.log('container')
+        }
+
+        document.querySelector('#button1').onclick = function(e){
+            e.stopPropagation();
+            console.log('button1');
+        }
+    </script>
+</body>
+</html>

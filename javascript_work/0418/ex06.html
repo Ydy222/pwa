@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="id" value="안녕하세요" />
+    <ul id="fru">
+      <li id="1" data-user-id="1" data-role="apple">Apple</li>
+      <li id="2" data-user-id="2" data-role="banana">Banana</li>
+      <li id="3" data-user-id="3" data-role="orange">Orange</li>
+    </ul>
+    <script>
+        const frus = [...document.getElementById('fru').children];
+        // console.log(frus);
+
+        //배열 함수 find findIndex 고차함수 = 콜백함수가 매개변수로 들어오는게 
+        //find 구성요소를 반환하는 함수
+        //findIndex 구성요소의 인덱스 배열번호를 반환하는 함수
+        const res = frus.find(item =>{
+            console.log(item.dataset.userId);
+            return item.dataset.userId == 1;
+        })
+        console.log(res);
+        console.log(res.dataset.role);
+        res.dataset.role = "변경변경";
+        console.log(res.dataset.role);
+    </script>
+  </body>
+</html>

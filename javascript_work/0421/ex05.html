@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button>추가삭제</button>
+<script>
+    function func() {
+        console.log('함수');
+        // 이벤트 삭제
+        // true 함수 파라메타가 달라지므로 삭제 실패
+        $button.removeEventListener('click', func, false);
+    }
+
+    const $button = document.getElementsByTagName('button')[0];
+
+    // 이벤트 추가
+    // false 가 기본 값으로 들어간다.. 버블링 속성
+    $button.addEventListener('click', func, false);
+
+</script>
+</body>
+</html>

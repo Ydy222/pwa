@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>버튼</button> <!-- 버튼 이벤트 발생됨 -->
+    <input type="text"> <!-- 인풋 이벤트 발생됨 -->
+<script>
+    const $input = document.getElementsByTagName('input')[0];
+    const $button = document.getElementsByTagName('button')[0];
+    $input.onkeydown = input이벤트함수;
+    $button.onclick = click이벤트함수;
+    function input이벤트함수(e){
+        console.log(e.target);
+        console.log(e.currentTarget);
+    }
+    function click이벤트함수(e){
+        console.log(e.target);
+        console.log(e.currentTarget);
+    }
+</script>
+</body>
+</html>

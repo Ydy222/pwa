@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="id" value="안녕하세요" />
+    <ul id="fru">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Orange</li>
+    </ul>
+    <button onclick="stop()">스톱</button>
+    <script>
+      const $ul = document.getElementById("fru");
+      let red = 100;
+      const test = setInterval(() => {
+        $ul.style['background-color'] = `rgb(${red},200,100)`;
+        red += 10;
+        if (red === 250) red = 0;
+      }, 100);
+      function stop(){
+        clearInterval(test);
+      }
+    </script>
+  </body>
+</html>

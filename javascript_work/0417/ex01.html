@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <ul id="fr">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>melon</li>
+      </ul>
+      <button onclick="addLi();">li추가</button>
+      <button onclick="delLi();">li삭제</button>
+    </div>
+    <script>
+      const $ul = document.getElementById("fr");
+      // $ul.lastElementChild <- 요소노드만 가지고 온다.
+      // $ul.lastChild <- 요소노드와 텍스트노드를 포함해서 가지고 옵니다.
+
+      console.log($ul.childNodes.length);   // 요소노드와 텍스트 노드 포함해서 길이 확인
+      // 요소노드 확인 2가지 방법
+      console.log($ul.childElementCount);   // 요소노드만 길이 확인
+      console.log($ul.children.length);;
+
+      // 공백 텍스트 노드 확인..
+      const reuslt = $ul.lastChild;
+      console.log(reuslt);
+      reuslt.textContent="텍스트내용추가";
+
+      const htmlCollection = document.getElementsByTagName("li");
+      console.log(htmlCollection);
+
+      const nodeList = document.querySelectorAll("li");
+      console.log(nodeList);
+      function addLi() {
+        const $li = document.createElement("li");
+        $li.textContent = "🍇🍆🌽";
+        $ul.appendChild($li);
+
+        console.log(htmlCollection); //실시간반영
+        console.log(nodeList); // 실시간 미반영
+      }
+      function delLi() {
+        $ul.removeChild($ul.lastElementChild);
+
+        console.log(htmlCollection); //실시간반영
+        console.log(nodeList); // 실시간 미반영
+      }
+    </script>
+  </body>
+</html>

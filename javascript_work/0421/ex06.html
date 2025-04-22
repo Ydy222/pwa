@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick="inlineFunc(event)">div클릭 할수 있음</div>
+    <button>버튼</button>
+<script>
+    // event 객체는 어떤 이벤트가 발생했는지 clientX clientY 좌표 click
+    function inlineFunc() {
+        console.log('test')
+        console.log(event);
+    }
+    // e 에는 event객체 자동으로 전달 된다.
+    function test(e) {
+        console.log(e);
+    }
+    const $button = document.querySelector('button');
+    $button.onclick = test;
+</script>
+</body>
+</html>
