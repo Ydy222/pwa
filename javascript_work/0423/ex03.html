@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <script>
+      const $input = document.getElementById("input");
+      const debounce = (callback, delay) => {
+        let timerId;
+        return (...args) => {
+          console.log("test");
+          console.log(args);
+          if (timerId) clearTimeout(timerId);
+          // setTimeout에 3번째 인수는 콜백함수에 매개변수로 들어오게 된다.
+          timerId = setTimeout(callback, delay, ...args);
+        };
+      };
+
+      $input.oninput = debounce((e) => {
+        console.log("타임아웃" + e.target.value);
+      }, 300);
+
+    //   $input.oninput = (...args) => {
+    //     console.log("test");
+    //     console.log(args);
+    //     if (timerId) clearTimeout(timerId);
+    //     timerId = setTimeout(callback, delay, args);
+    //   };
+    </script>
+  </body>
+</html>

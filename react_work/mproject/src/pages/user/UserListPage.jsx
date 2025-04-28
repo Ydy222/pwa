@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Input, Layout, message, Modal, notification, Popconfirm, Table} from "antd";
-import {deleteUserByIds, getUsers} from "../../database/userManager.js";
+import {deleteUserByIds, getUsers, updateUserById} from "../../database/userManager.js";
 
 const {Content} = Layout;
 
@@ -59,7 +59,25 @@ function UserListPage(props) {
     }
 
     async function handleModalOk() {
+        const values = form.getFieldsValue();
+        // message.info('누르,ㅁ');
+        // message.info(findUser.id);
+        // console.log(values);
+
+        const {error}
+            = await updateUserById(findUser.id, values);
+        if (error) {
+            if (error.code === '22P02') {
+                message.error('나이는 숫자를 입력하세요');
+                return;
+            }
+        } else {
+            message.success('성공적으로 수정하였습니다.');
+            loadData();
+        }
+
         setShowModal(false);
+        setSelectedRowKeys([]);
     }
 
     useEffect(() => {

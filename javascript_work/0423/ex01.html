@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <button id="button" onclick="aa(event)">버튼</button> -->
+    <button id="button">버튼</button>
+    <button id="button2">버튼</button>
+    <script>
+      const $button = document.getElementById("button");
+      const $button2 = document.getElementById("button2");
+
+      $button.onclick = function(e){};
+      $button.onclick = function(e){};
+
+      // 이벤트 두개달림
+      $button2.addEventListener("click", (e) => {
+        // 이벤트 발생
+        $button.dispatchEvent(ce);
+      });
+      $button2.addEventListener("click", (e) => {
+        // 이벤트 발생
+        $button.dispatchEvent(ce);
+      });
+
+      $button.addEventListener("foo", (e) => {
+        console.log(e.detail.message);
+      });
+
+      const ce = new CustomEvent("foo", {
+        detail: {
+          message: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
