@@ -1,5 +1,20 @@
 {
   "dependencies": {
     "dotenv": "^16.5.0"
-  }
+  },
+  "devDependencies": {
+    "electron": "^36.1.0"
+  },
+  "name": "ex0502",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }

@@ -1,55 +1,70 @@
-// server.js
 const express = require('express');
-const webpush = require('web-push');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const dotenv = require('dotenv');
+const path = require('path');
 
+dotenv.config();
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+app.set('port', process.env.PORT || 3000);
 
-// 👉 1. VAPID 키 생성 (최초 1회만 하면 됨)
-// const vapidKeys = webpush.generateVAPIDKeys();
-// console.log(vapidKeys);
+app.use(morgan('dev'));
+app.use('/', express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  },
+  name: 'session-cookie',
+}));
 
-const vapidKeys = {
-  publicKey: 'BM2_ckesszKU9bWogsZPus9B3YbEONm9MdzUavjsP9xokJW3j9OZc1qkmjyiqbDyKlCLU8UHPIgvRapCmCAhY6Q',
-  privateKey: '2nFPUiIiYWoAMXkgitCxnIkRRcMmx8RdFUctzXUWFjU'
-};
+const multer = require('multer');
+const fs = require('fs');
 
-// 👉 2. VAPID 정보 설정
-webpush.setVapidDetails(
-  'mailto:your@email.com',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-);
-
-// 👉 3. 클라이언트에서 받은 subscription 저장용
-let clientSubscription = null;
-
-app.post('/save-subscription', (req, res) => {
-  clientSubscription = req.body;
-  console.log('💾 Subscription 저장됨:', clientSubscription);
-  res.status(201).json({ message: 'Subscription saved.' });
+try {
+  fs.readdirSync('uploads');
+} catch (error) {
+  console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+  fs.mkdirSync('uploads');
+}
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      done(null, 'uploads/');
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+app.get('/upload', (req, res) => {
+  res.sendFile(path.join(__dirname, 'multipart.html'));
+});
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log(req.file);
+  res.send('ok');
 });
 
-app.post('/send-notification', async (req, res) => {
-  const payload = JSON.stringify({
-    title: '푸시 알림 도착!',
-    body: '🎉 서버에서 보낸 메시지예요!',
-  });
-
-  try {
-    await webpush.sendNotification(clientSubscription, payload);
-    res.status(200).json({ message: 'Notification sent' });
-  } catch (err) {
-    console.error('❌ 푸시 전송 실패:', err);
-    res.sendStatus(500);
-  }
+app.get('/', (req, res, next) => {
+  console.log('GET / 요청에서만 실행됩니다.');
+  next();
+}, (req, res) => {
+  throw new Error('에러는 에러 처리 미들웨어로 갑니다.')
+});
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send(err.message);
 });
 
-const PORT = 4000;
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 푸시 서버 실행 중: http://112.222.157.156:${PORT}`);
-  });
-  
+app.listen(app.get('port'), () => {
+  console.log(app.get('port'), '번 포트에서 대기 중');
+});
