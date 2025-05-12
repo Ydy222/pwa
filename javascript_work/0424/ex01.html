@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const xhr = new XMLHttpRequest();
+
+      xhr.open("get", "https://dummyjson.com/todos");
+
+      xhr.send();
+
+      xhr.onreadystatechange = () => {
+        console.log("readyState값 변경될때마다 출력");
+        if (xhr.status === 200) {
+          console.log(JSON.stringify(xhr.response));
+        }
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="pp"></p>
+    <script>
+      const $pp = document.getElementById("pp");
+      const get = (url, sucfunc, failfunc) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.send();
+
+        xhr.onload = () => {
+          test = "성공적으로 통신";
+          if (xhr.status === 200) {
+            const result = xhr.response.replaceAll(",", ",<br/>");
+            $pp.innerHTML = result;
+            sucfunc(result);
+          }
+          else{
+            failfunc(xhr.statusText);
+          }
+        };
+      };
+      const ret = get(
+        "https://6809e0571f1a52874cde2b14.mockapi.io/todos/1",
+        console.log, // console 객체 안에 있는 log 함수 매개변수로 보냄
+        console.err // console 객체 안에 있는 err 함수 매개변수로 보냄
+      );
+    </script>
+  </body>
+</html>

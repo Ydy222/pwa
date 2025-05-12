@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .input-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        justify-content: center;
+      }
+
+      input[type="text"] {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 300px;
+      }
+
+      button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+
+      #GET {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      #POST {
+        background-color: #2196F3;
+        color: white;
+      }
+
+      #PUT {
+        background-color: #FF9800;
+        color: white;
+      }
+
+      #PATCH {
+        background-color: #9C27B0;
+        color: white;
+      }
+
+      #DELETE {
+        background-color: #f44336;
+        color: white;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      .todo-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .todo-item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+      }
+
+      .todo-item h1 {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+      }
+
+      .todo-item h1.completed {
+        text-decoration: line-through;
+        color: #888;
+      }
+
+      #result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo App</h1>
+      
+      <div class="input-group">
+        <input type="text" id="todo" placeholder="Enter your todo..." />
+        <button id="POST">Add Todo</button>
+      </div>
+
+      <div class="input-group">
+        <button id="GET">Get Todos</button>
+        <button id="PUT">Update</button>
+        <button id="PATCH">Patch</button>
+        <button id="DELETE">Delete</button>
+      </div>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      const $div = document.getElementById("result");
+      let selectedIds = [];
+      $div.addEventListener("click", ({ target }) => {
+        console.log(target);
+        if (target.tagName == "INPUT") {
+          if (target.checked) {
+            selectedIds.push(target.value);
+          } else {
+            selectedIds = selectedIds.filter(id => id !== target.value);
+          }
+          console.log(selectedIds);
+        }
+      });
+
+      document.getElementById("GET").addEventListener("click", async function () {
+        $div.innerHTML = "";
+        selectedIds = [];
+
+        // const result = awiat supabase.from('todos').select()
+        // .then(result =>{
+
+        // });
+
+        const result = axios.get('http://localhost:5000/todos');
+
+        axios.get("http://192.168.0.40:5000/todos").then((data) => {
+          console.log(data);
+          data.data.forEach((item) => {
+            const $subDiv = document.createElement("div");
+            $subDiv.className = "todo-item";
+
+            const $checkbox = document.createElement("input");
+            $checkbox.type = "checkbox";
+            $checkbox.value = item.id;
+            $checkbox.checked = selectedIds.includes(item.id);
+
+            const $h1 = document.createElement("h1");
+            $h1.textContent = item.todo;
+            if (item.completed) {
+              $h1.classList.add("completed");
+            }
+
+            $subDiv.appendChild($checkbox);
+            $subDiv.appendChild($h1);
+
+            $div.appendChild($subDiv);
+          });
+        });
+      });
+      document.getElementById("POST").addEventListener("click", function () {
+        const todo = document.getElementById("todo").value;
+        if (todo.trim() === "") {
+          alert("Please enter a todo item");
+          return;
+        }
+        axios.post("http://192.168.0.40:5000/todos", {
+          todo,
+          completed: false,
+        }).then(() => {
+          document.getElementById("todo").value = "";
+          document.getElementById("GET").click(); // Refresh the list
+        });
+      });
+      document.getElementById("PUT").addEventListener("click", function () {
+        if (selectedIds.length === 0) {
+          alert("Please select todo items to update");
+          return;
+        }
+        
+        const todo = document.getElementById("todo").value;
+        if (todo.trim() === "") {
+          alert("Please enter a todo item");
+          return;
+        }
+
+        // Update all selected todos
+        const updatePromises = selectedIds.map(id => 
+          axios.put(`http://192.168.0.40:5000/todos/${id}`, {
+            todo,
+            completed: false
+          })
+        );
+
+        Promise.all(updatePromises).then(() => {
+          document.getElementById("todo").value = "";
+          selectedIds = [];
+          document.getElementById("GET").click(); // Refresh the list
+        });
+      });
+      document
+        .getElementById("PATCH")
+        .addEventListener("click", function () {
+          if (selectedIds.length === 0) {
+            alert("Please select todo items to toggle completion");
+            return;
+          }
+
+          // Toggle completion status for all selected todos
+          const patchPromises = selectedIds.map(id => 
+            axios.patch(`http://192.168.0.40:5000/todos/${id}`, {
+              completed: true
+            })
+          );
+
+          Promise.all(patchPromises).then(() => {
+            selectedIds = [];
+            document.getElementById("GET").click(); // Refresh the list
+          });
+        });
+      document.getElementById("DELETE").addEventListener("click", function () {
+        if (selectedIds.length === 0) {
+          alert("Please select todo items to delete");
+          return;
+        }
+
+        // Delete all selected todos
+        const deletePromises = selectedIds.map(id => 
+          axios.delete(`http://192.168.0.40:5000/todos/${id}`)
+        );
+
+        Promise.all(deletePromises).then(() => {
+          selectedIds = [];
+          document.getElementById("GET").click(); // Refresh the list
+        });
+      });
+    </script>
+  </body>
+</html>

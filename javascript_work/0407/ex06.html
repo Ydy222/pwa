@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputNumber">
+    <button onclick="aa();">전화번호확인</button>
+</body>
+</html>
+
+<script>
+    const $inputNumber = document.getElementById('inputNumber');
+    const re = /(\d{3})-(\d{3,4})-(\d{4})/;
+
+    function aa(){
+        if(re.test( $inputNumber.value))
+            alert('전화번호맞음');
+        else
+            alert('전화번호확인하시기바랍니다.');
+    }
+
+</script>

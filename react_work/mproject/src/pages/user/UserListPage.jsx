@@ -44,8 +44,6 @@ function UserListPage(props) {
 
     async function handleDelete() {
         const {error} = await deleteUserByIds(selectedRowKeys);
-        // 에러는 null값일때 성공한것
-        // 에러에 값이 있으면 실패..
         if (error) {
             message.error(error);
         } else {

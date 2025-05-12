@@ -18,6 +18,7 @@ function App() {
     // aa 가 변경되면 또 호출해라
     useEffect(() => {
         console.log("부모 useEffect");
+       
     }, [aa])
 
     return (

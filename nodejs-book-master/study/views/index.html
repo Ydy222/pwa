@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GIF 채팅방</title>
+</head>
+<body>
+<h1><a href="/room">방목록</a></h1>
+<script>
+    function send(){
+        socket.emit('message', {data: 'Hello World!'});
+    }
+    const socket = io.connect('http://localhost:8005', {
+        path: '/socket.io',
+        transports: ['websocket'],
+    });
+    console.log(socket)
+    socket.on('connect', function () {
+        console.log('connected');
+    });
+    socket.on('message', function (data) {
+        console.log(data);
+    });
+    socket.on('disconnect', function () {
+        console.log('disconnect');
+    })
+    socket.on('error', function (data) {
+        console.log(data);
+    });
+</script>
+</body>
+</html>

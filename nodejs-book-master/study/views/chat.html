@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GIF 채팅방</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        #app{
+            overflow-x: hidden;
+            overflow-y: scroll;
+            background-color: rgb(240,240,240);
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+<h1>{{title}}</h1>
+<div id="app">
+    {% for chat in chats %}
+    <div>
+        {% if chat.user === user %}
+        <p style="text-align: right">{{chat.chat}} : 나</p>
+        {% else %}
+        <p>어떤 사람 : {{chat.chat}}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+<form action="/chat" method="post" id="form">
+    <label for="chat">하고싶은말</label>
+    <input type="text" name="chat" id="chat"/>
+    <input type="hidden" name="roomId" id="roomId"/>
+    <button type="submit" id="submit">전송</button>
+</form>
+</body>
+</html>
+<script>
+    document.querySelector('#form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        axios.post('/chat', {
+            chat: document.querySelector('#chat').value,
+            roomId: document.querySelector('#roomId').value
+        }).then((res) => {
+            console.log(res);
+        })
+    });
+
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io.connect('http://localhost:8005/chat',{
+        path:'/socket.io'
+    });
+    socket.emit('join',new URL(location).pathname.split('/').pop());
+    document.getElementById('roomId').value = new URL(location).pathname.split('/').pop();
+    socket.on('chat', (res) => {
+        console.log(res);
+    });
+</script>

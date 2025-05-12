@@ -11,11 +11,16 @@ import Checkbox from "@mui/material/Checkbox";
 import BasicRating from "./components/Basicrating";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Divider } from "antd";
+import { Image } from 'antd';
 
 function App() {
   return (
     <>
       <div>
+        <Image
+          width={200}
+          src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+        />
         <Divider></Divider>
         <Divider>Text</Divider>
         <Divider orientation="right">Right Text</Divider>
@@ -24,10 +29,8 @@ function App() {
         </Divider>
         <CaretRightOutlined />
         <Button>내마음데로수정이어렵다</Button>
-
         <BasicRating />
         <Checkbox defaultChecked />
-
         <Stack spacing={2} direction="row">
           <MButton
             variant="text"

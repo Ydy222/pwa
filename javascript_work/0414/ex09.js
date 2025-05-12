@@ -7,3 +7,8 @@ const setB = new Set([2, 3]);
 
 console.log(setA.isSuperSet(setB));
 console.log(setB.isSuperSet(setA));
+
+const a = NaN;
+
+console.log(Number.isNaN(NaN))
+// console.log(a.isNaN(NaN));

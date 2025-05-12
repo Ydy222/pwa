@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {Button, Card, Form, Input, Layout, notification, Select} from "antd";
+import {useNavigate} from "react-router-dom";
 
 function TodoAddPage(props) {
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     const onFinish =  (values) => {
         setLoading(true);
         fetch( 'https://6809e0571f1a52874cde2b14.mockapi.io/todos',{
@@ -15,7 +17,8 @@ function TodoAddPage(props) {
         .then(data => {
             notification.success({
                 message: "성공적으로 저장하였습니다."
-            })
+            });
+            navigate('/todo/list');
         })
 
         setLoading(false);

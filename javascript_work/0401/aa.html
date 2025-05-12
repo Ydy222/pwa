@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>전체 배경 + 별 애니메이션</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      background-image: url('aa_resized.png'); /* ✅ 이미지 경로 */
+      background-size: cover;     /* ✅ 전체 이미지 비율 유지하며 화면에 맞춤 */
+      background-repeat: no-repeat; /* ✅ 반복 금지 */
+      background-position: center;  /* ✅ 화면 가운데 정렬 */
+    }
+
+    .star {
+      position: absolute;
+      color: white;
+      font-size: 12px;
+      pointer-events: none;
+      animation: twinkle 0.5s ease-out forwards;
+      filter: drop-shadow(0 0 4px white);
+    }
+
+    @keyframes twinkle {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function createStar() {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.textContent = "★";
+
+    const size = Math.random() * 20 + 10;
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+
+    star.style.left = `${x}px`;
+    star.style.top = `${y}px`;
+    star.style.fontSize = `${size}px`;
+
+    document.body.appendChild(star);
+
+    setTimeout(() => {
+      star.remove();
+    }, 1000);
+  }
+
+  setInterval(createStar, 30);
+</script>
+
+</body>
+</html>
