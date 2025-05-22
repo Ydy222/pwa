@@ -10,7 +10,7 @@ function App() {
     const getUsers = async (event) => {
         // console.log(event);
 
-        const result = await axios.get('http://localhost:8080')
+        const result = await axios.get('https://port-0-pwa1-manaclkw16009d5b.sel4.cloudtype.app/')
         const {data, status} = result;
 
         setUsers(data);
