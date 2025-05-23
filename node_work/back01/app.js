@@ -3,8 +3,9 @@ require("dotenv").config();
 
 const cors = require("cors"); // cors 모듈
 const pool = require("./db");
+const {supabase} = require("./supadb");
 const express = require("express");  // http 모듈 확장한 프레임워크
-const app = express();
+const app = express();  // express 객체 생성
 const path = require("path");  // 경로 관리 모듈
 const morgan = require("morgan"); // (req,res,next=>{}) 미들웨어' 기록 남기는 모듈
 const cookieParser = require("cookie-parser");
@@ -27,6 +28,15 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use((req, res, next) => {
     console.log("모든 요청은 여기 들렸다가 진행된다.");
     next();
+});
+
+app.get("/supauser", async (req, res, next)=>{
+    // console.log(supabase);
+    const {data,error} = await supabase.from('users').select();
+    console.log('data',data);
+    console.log('error',error);
+
+    res.json({"message":"잘했네", data})
 });
 
 app.get("/setCoo", (req, res, next) => {
