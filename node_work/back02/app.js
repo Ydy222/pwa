@@ -36,6 +36,7 @@ app.get("/", (req, res, nest) => {
 const ss = [];
 
 app.post("/subscribe", (req, res, nest) => {
+    console.log(req.body);
     ss.push({ sub: req.body });
     console.log(ss);
     res.send("구독 성공");
