@@ -3,8 +3,8 @@ const webpush = require('web-push');
 
 webpush.setVapidDetails(
     "mailto:dron512@naver.com",
-    'BJW_EkZfEVTVII8wj6Z74nVCd6Nh5EdLXB2_uIPL5HZAQDwX5hAWYekQJ5pxn0QJMgl5bdlt7xYwool4TlJFsII',
-    'vph3MmgOM6skksFRXHJUKS9ox8ke6EtCS3UBe-jwGM8'
+    'BOAuoBgOZfgd3ZRCdmzUbA6SX7LlHOkYjnisDXrYMXDCrW6qGAQMLxEVUu4m4UZZjQL4lOX02lU4Qn84gi632uU',
+    'JTZzRxODgHC1CPsfTlvNqAWkuohMWqqRRkCYZcurIqs'
 )
 
 const cors = require("cors");
@@ -36,29 +36,29 @@ app.get("/", (req, res, nest) => {
 const ss = [];
 
 app.post("/subscribe", (req, res, nest) => {
-    ss.push({sub:req.body});
+    ss.push({ sub: req.body });
     console.log(ss);
     res.send("구독 성공");
 })
 
 app.get("/send", async (req, res, nest) => {
-    try{
+    try {
         const payload = JSON.stringify({
             title: "new 알람",
             body: "푸시 알람 테스트",
-            url:"https://front022.vercel.app/"
+            url: "https://front022.vercel.app/"
         });
-        const notifications = ss.map(item=>{
-            console.log('item = ',item);
-            return webpush.sendNotification(item.sub,payload);
+        const notifications = ss.map(item => {
+            console.log('item = ', item);
+            return webpush.sendNotification(item.sub, payload);
         })
         console.log("notifications = ", notifications);
         await Promise.all(notifications);
-    res.json({messege:"푸시 알람 전송 성공"});
-} catch (e){
-    console.log(e);
-    res.json({messege:"푸시 알람 전송 실패"});
-}
+        res.json({ messege: "푸시 알람 전송 성공" });
+    } catch (e) {
+        console.log(e);
+        res.json({ messege: "푸시 알람 전송 실패" });
+    }
 });
 
 app.listen(8080, () => {
