@@ -1,31 +1,27 @@
 import './App.css'
 import axios from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 // import {useEffect} from "react";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
 
     const [test, setTest] = useState("안녕 test");
     const getRoot = async ()=> {
         // console.log("get root");
-        const result = await axios.get("http://localhost:8080");
-        console.log(result.data);
+        // const result = await axios.get("http://localhost:8080");
+        // console.log(result.data);
 
-        const {data, error} = await axios.get("http://localhost:8080");
+        const {data, error} = await axios.get(API_URL);
         console.log(data);
         console.log(error);
 
         setTest(data);
     }
 
-    // useEffect(()=>{
-    //     document.getElementById('aa').innerHTML = test;
-    // },[]);
-
     useEffect(() => {
-
         // 푸시 알람 받을 준비 됐어 할꺼야
-
         if ("serviceWorker" in navigator && "PushManager" in window) {
             console.log("service worker");
             navigator.serviceWorker.ready.then((registration) => {
@@ -43,6 +39,12 @@ function App() {
                             headers: {
                                 "Content-Type": "application/json",
                             },
+                        }).then(res=>{
+                            console.log(res);
+                            console.log('푸시 구독 성공');
+                        }).catch(err=>{
+                            console.log(err);
+                            console.error("푸시 구독 서버 전송 실패:", err);
                         });
                     })
                     .catch((error) => {
