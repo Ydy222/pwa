@@ -1,6 +1,6 @@
 import './App.css'
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 // import {useEffect} from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -8,7 +8,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 function App() {
 
     const [test, setTest] = useState("안녕 test");
-    const getRoot = async ()=> {
+    const getRoot = async () => {
         // console.log("get root");
         // const result = await axios.get("http://localhost:8080");
         // console.log(result.data);
@@ -20,8 +20,7 @@ function App() {
         setTest(data);
     }
 
-    useEffect(() => {
-        // 푸시 알람 받을 준비 됐어 할꺼야
+    const daeguSub = () => {
         if ("serviceWorker" in navigator && "PushManager" in window) {
             console.log("service worker");
             navigator.serviceWorker.ready.then((registration) => {
@@ -33,16 +32,18 @@ function App() {
                         applicationServerKey: "BCXJoTkXAUR1gTjWBzJCGtIi6qGXrw2LDtbGg5YuhgZdxyrTXHoO3UoX-spWSNcNbLUHmiIn_sxPNaKd5Cd9mxU",
                     })
                     .then((subscription) => {
+                        subscription.city = '대구';
+
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
                             body: JSON.stringify(subscription),
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                        }).then(res=>{
+                        }).then(res => {
                             console.log(res);
                             console.log('푸시 구독 성공');
-                        }).catch(err=>{
+                        }).catch(err => {
                             console.log(err);
                             console.error("푸시 구독 서버 전송 실패:", err);
                         });
@@ -53,22 +54,23 @@ function App() {
             });
 
         }
-    }, []);
+    }
 
-
-  return (
-    <>
-        <h1>Hello React</h1>
-        <p id='aa'>Hello React + {test}</p>
-    {/*<button onClick={getRoot}>백엔드요청</button>*/}
-    <button onClick={
-        ()=>{
-            console.log("get root");
-        getRoot();
-        }
-    }    >백엔드요청</button>
-    </>
-  )
+    return (
+        <>
+            <h1>Hello React</h1>
+            <p id='aa'>Hello React + {test}</p>
+            <button onClick={daeguSub}>대구구독</button>
+            {/*<button onClick={getRoot}>백엔드요청</button>*/}
+            <button onClick={
+                () => {
+                    console.log("get root");
+                    getRoot();
+                }
+            }>백엔드요청
+            </button>
+        </>
+    )
 }
 
 export default App
