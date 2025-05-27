@@ -7,7 +7,14 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA( {
-      registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.js',
+      registerType: 'prompt',
+      injectManifest: {
+        globPatterns: ['**/*.{js,css,html,png,svg}'],
+        maximumFileSizeToCacheInBytes: 100 * 1024 * 1024,
+      },
       manifest: {
         name: '알림',
         short_name: '알림앱',
