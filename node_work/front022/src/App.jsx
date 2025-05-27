@@ -32,21 +32,12 @@ function App() {
                         applicationServerKey: "BCXJoTkXAUR1gTjWBzJCGtIi6qGXrw2LDtbGg5YuhgZdxyrTXHoO3UoX-spWSNcNbLUHmiIn_sxPNaKd5Cd9mxU",
                     })
                     .then((subscription) => {
-                        subscription.city = '대구';
-                        console.log(subscription);
-
                         return fetch(`${API_URL}/subscribe`, {
                             method: "POST",
-                            body: JSON.stringify(subscription),
+                            body: JSON.stringify({...subscription, city: "daegu"}),
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                        }).then(res => {
-                            console.log(res);
-                            console.log('푸시 구독 성공');
-                        }).catch(err => {
-                            console.log(err);
-                            console.error("푸시 구독 서버 전송 실패:", err);
                         });
                     })
                     .catch((error) => {
