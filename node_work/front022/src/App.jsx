@@ -30,7 +30,7 @@ function App() {
                     .subscribe({
                         userVisibleOnly: true,
                         // 공개키 설정
-                        applicationServerKey: "BOAuoBgOZfgd3ZRCdmzUbA6SX7LlHOkYjnisDXrYMXDCrW6qGAQMLxEVUu4m4UZZjQL4lOX02lU4Qn84gi632uU",
+                        applicationServerKey: "BCXJoTkXAUR1gTjWBzJCGtIi6qGXrw2LDtbGg5YuhgZdxyrTXHoO3UoX-spWSNcNbLUHmiIn_sxPNaKd5Cd9mxU",
                     })
                     .then((subscription) => {
                         return fetch(`${API_URL}/subscribe`, {

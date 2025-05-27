@@ -2,9 +2,9 @@ require("dotenv").config();
 const webpush = require('web-push');
 
 webpush.setVapidDetails(
-    "mailto:dron512@naver.com",
-    'BOAuoBgOZfgd3ZRCdmzUbA6SX7LlHOkYjnisDXrYMXDCrW6qGAQMLxEVUu4m4UZZjQL4lOX02lU4Qn84gi632uU',
-    'JTZzRxODgHC1CPsfTlvNqAWkuohMWqqRRkCYZcurIqs'
+    "mailto:aaa@naver.com",
+    'BCXJoTkXAUR1gTjWBzJCGtIi6qGXrw2LDtbGg5YuhgZdxyrTXHoO3UoX-spWSNcNbLUHmiIn_sxPNaKd5Cd9mxU',
+    'l-jtmuatlgHd-SF2rmWFzMHlrkLOIsYZrV-iFEeqydc'
 )
 
 const cors = require("cors");
